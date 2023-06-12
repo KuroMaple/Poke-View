@@ -15,6 +15,7 @@
 .main-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 5rem;
 }
 
@@ -23,19 +24,16 @@
     font-weight:lighter;
     color: var(--main-logo-yellow);
     text-shadow:
-    -0.22rem -0.22rem 0 var(--main-logo-light-blue),  
-    0.22rem -0.22rem 0 var(--main-logo-light-blue),
-    -0.22rem 0.22rem 0 var(--main-logo-light-blue),
-    0.22rem 0.22rem 0 var(--main-logo-light-blue);
-    font-size: small;                                    
+    -0.09rem -0.1rem 0 var(--main-logo-light-blue),  
+    0.22rem -0.13rem 0 var(--main-logo-light-blue),
+    -0.21rem 0.23rem 0 var(--main-logo-light-blue),
+    0.16rem 0.23rem 0 var(--main-logo-light-blue);                                  
 }
 
 .main-header__button{
     color: var(--light-text-color); 
     border: none;
     background: none;
-    max-height: 2rem;
-
 }
 
 .main-header__button svg {
@@ -45,4 +43,10 @@
 .main-header__button:hover {
     cursor: pointer;
     background-color: var(--main-logo-light-blue);
+}
+
+.filter-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

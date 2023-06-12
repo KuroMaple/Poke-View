@@ -1,14 +1,15 @@
-import './App.css'
-import MainHeader from './components/MainHeader'
+import './App.css';
+import FilterBox from './components/FilterBox';
+import MainHeader from './components/MainHeader';
+import React from 'react';
 
 function App() {
-
   return (
     <>
-      <MainHeader/>
-      <span>hello world</span>
+      <MainHeader />
+      <FilterBox />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
