@@ -1,1 +1,28 @@
+@import url(//db.onlinewebfonts.com/c/f4d1593471d222ddebd973210265762a?family=Pokemon);
 
+:root {
+    --main-logo-yellow: #ffcb05;
+    --main-logo-light-blue: #2a75bb;
+
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-header__title {
+    font-family: 'Pokemon', sans-serif;
+    font-weight:lighter;
+    color: var(--main-logo-yellow);
+    text-shadow:
+    -4px -4px 0 var(--main-logo-light-blue),  
+    4px -4px 0 var(--main-logo-light-blue),
+    -4px 4px 0 var(--main-logo-light-blue),
+    4px 4px 0 var(--main-logo-light-blue);
+                                                
+}
+.main-header__title,
+.main-header__button {
+    display: inline-block;
+}
