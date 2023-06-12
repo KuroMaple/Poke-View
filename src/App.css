@@ -3,12 +3,19 @@
 :root {
     --main-logo-yellow: #ffcb05;
     --main-logo-light-blue: #2a75bb;
+    --light-background: #FFFFFF;
+    --light-text-color: #000000;
 
+}
+
+#root {
+    padding: 0.5rem;
 }
 
 .main-header {
     display: flex;
     justify-content: space-between;
+    height: 5rem;
 }
 
 .main-header__title {
@@ -16,13 +23,26 @@
     font-weight:lighter;
     color: var(--main-logo-yellow);
     text-shadow:
-    -4px -4px 0 var(--main-logo-light-blue),  
-    4px -4px 0 var(--main-logo-light-blue),
-    -4px 4px 0 var(--main-logo-light-blue),
-    4px 4px 0 var(--main-logo-light-blue);
-                                                
+    -0.22rem -0.22rem 0 var(--main-logo-light-blue),  
+    0.22rem -0.22rem 0 var(--main-logo-light-blue),
+    -0.22rem 0.22rem 0 var(--main-logo-light-blue),
+    0.22rem 0.22rem 0 var(--main-logo-light-blue);
+    font-size: small;                                    
 }
-.main-header__title,
-.main-header__button {
-    display: inline-block;
+
+.main-header__button{
+    color: var(--light-text-color); 
+    border: none;
+    background: none;
+    max-height: 2rem;
+
+}
+
+.main-header__button svg {
+    margin-right: 0.5rem; /* Adjust the value as needed */
+}
+
+.main-header__button:hover {
+    cursor: pointer;
+    background-color: var(--main-logo-light-blue);
 }

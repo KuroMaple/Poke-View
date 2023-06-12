@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BiMoon } from 'react-icons/bi';
 const MainHeader = () => {
   return (
     <div className='main-header'>
@@ -7,9 +7,10 @@ const MainHeader = () => {
         <h1>Who&apos;s That Pok&#233;mon?</h1>
       </div>
       
-      <div className='main-header__button'>
-        <button>Dark Mode</button>
-      </div>
+      <button className='main-header__button'>
+        <BiMoon/>  
+        Dark Mode
+      </button>
     </div>
   );
 };
