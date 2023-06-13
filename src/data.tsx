@@ -1,3 +1,5 @@
+// This file exports information to style the Dropdown component
+
 import chroma from 'chroma-js';
 
 export interface ColourOption {

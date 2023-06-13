@@ -89,3 +89,20 @@
     border-color: var(--main-logo-light-blue);
     outline: none;
 }
+
+.card-display {
+    min-height: fit-content;
+    margin: 2rem;
+    border:1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border:1px solid black;
+    height: 20rem;
+    width: 15rem;
+    margin: 2rem;
+}
