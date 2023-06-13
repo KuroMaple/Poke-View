@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 
 const CardDisplay = () => {
-  const cards = Array(5).fill(<Card />);
+  const cards = Array(7).fill(<Card />);
 
   return (
     <div className="card-display">

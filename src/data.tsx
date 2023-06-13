@@ -29,3 +29,12 @@ export const colourOptions: ColourOption[] = [
   { value: 'steel', label: 'Steel', color: '#B8B8D0' },
   { value: 'fairy', label: 'Fairy', color: '#EE99AC' },
 ];
+
+export interface Pokemon {
+  name: string;
+  id: number;
+  hp: number;
+  atk: number;
+  def: number;
+  front_sprite: string;
+}
