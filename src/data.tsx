@@ -1,4 +1,4 @@
-// This file exports information to style the Dropdown component
+// This file exports information to style the Dropdown component and the Pokemon data model
 
 import chroma from 'chroma-js';
 
@@ -37,4 +37,6 @@ export interface Pokemon {
   atk: number;
   def: number;
   front_sprite: string;
+  typePrimary: string;
+  typeSecondary?: string;
 }

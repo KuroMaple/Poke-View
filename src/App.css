@@ -1,15 +1,70 @@
 @import url(//db.onlinewebfonts.com/c/f4d1593471d222ddebd973210265762a?family=Pokemon);
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=VT323&display=swap');
 
 :root {
     --main-logo-yellow: #ffcb05;
     --main-logo-light-blue: #2a75bb;
     --light-background: #FFFFFF;
     --light-text-color: #000000;
+    --type-normal: #A8A878;
+  
+    /* Fire */
+    --type-fire: #F08030;
+    
+    /* Water */
+    --type-water: #6890F0;
+    
+    /* Electric */
+    --type-electric: #F8D030;
+    
+    /* Grass */
+    --type-grass: #78C850;
+    
+    /* Ice */
+    --type-ice: #98D8D8;
+    
+    /* Fighting */
+    --type-fighting: #C03028;
+    
+    /* Poison */
+    --type-poison: #A040A0;
+    
+    /* Ground */
+    --type-ground: #E0C068;
+    
+    /* Flying */
+    --type-flying: #A890F0;
+    
+    /* Psychic */
+    --type-psychic: #F85888;
+    
+    /* Bug */
+    --type-bug: #A8B820;
+    
+    /* Rock */
+    --type-rock: #B8A038;
+    
+    /* Ghost */
+    --type-ghost: #705898;
+    
+    /* Dragon */
+    --type-dragon: #7038F8;
+    
+    /* Dark */
+    --type-dark: #705848;
+    
+    /* Steel */
+    --type-steel: #B8B8D0;
+    
+    /* Fairy */
+    --type-fairy: #EE99AC;
 
 }
 
 #root {
     padding: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'VT323', monospace;
 }
 
 .main-header {
@@ -90,7 +145,7 @@
     outline: none;
 }
 
-.card-display {
+.card-display__card-holder {
     min-height: fit-content;
     margin: 2rem;
     border:1px solid black;
@@ -105,4 +160,126 @@
     height: 20rem;
     width: 15rem;
     margin: 2rem;
+    display: inline-flexbox;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    flex-direction: column;
+    border-radius: 5px;
 }
+.card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__header__name {
+    font-size:x-large
+}
+
+.card__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #808080;
+}
+
+.card__header__types{
+    display: flex;
+}
+
+.water,
+.fire,
+.electric,
+.grass,
+.ice,
+.fighting,
+.poison,
+.ground,
+.flying,
+.psychic,
+.bug,
+.rock,
+.ghost,
+.dragon,
+.dark,
+.steel,
+.fairy,
+.normal {
+    border:1px solid black;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: larger;
+}
+
+.water {
+    background-color: var(--type-water);
+}
+.fire {
+    background-color: var(--type-fire);
+  }
+  
+  .electric {
+    background-color: var(--type-electric);
+  }
+  
+  .grass {
+    background-color: var(--type-grass);
+  }
+  
+  .ice {
+    background-color: var(--type-ice);
+  }
+  
+  .fighting {
+    background-color: var(--type-fighting);
+  }
+  
+  .poison {
+    background-color: var(--type-poison);
+  }
+  
+  .ground {
+    background-color: var(--type-ground);
+  }
+  
+  .flying {
+    background-color: var(--type-flying);
+  }
+  
+  .psychic {
+    background-color: var(--type-psychic);
+  }
+  
+  .bug {
+    background-color: var(--type-bug);
+  }
+  
+  .rock {
+    background-color: var(--type-rock);
+  }
+  
+  .ghost {
+    background-color: var(--type-ghost);
+  }
+  
+  .dragon {
+    background-color: var(--type-dragon);
+  }
+  
+  .dark {
+    background-color: var(--type-dark);
+  }
+  
+  .steel {
+    background-color: var(--type-steel);
+  }
+  
+  .fairy {
+    background-color: var(--type-fairy);
+  }
+
+  .normal {
+    background-color: var(--type-normal);
+  }
