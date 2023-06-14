@@ -1,4 +1,5 @@
-// This file exports information to style the Dropdown component and the Pokemon data model
+// This file exports information to style the Dropdown component
+// and the Pokemon data model
 
 import chroma from 'chroma-js';
 

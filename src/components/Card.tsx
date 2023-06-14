@@ -41,6 +41,9 @@ const Card = () => {
   return (
     <div className="card">
       <div className="card__header">
+        <div className="card__id">
+          <p>{pokemon?.id}.</p>
+        </div>
         <p className="card__header__name">
           {capitalizeName(pokemon?.name ?? '')}
         </p>
