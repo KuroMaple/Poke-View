@@ -49,8 +49,10 @@ const Card = () => {
           typeSecondary={pokemon?.typeSecondary ?? ''}
         />
       </div>
-      <div className="card__img">
-        <img src={pokemon?.front_sprite} />
+      <div className="card__img-border">
+        <div className="card__img">
+          <img src={pokemon?.front_sprite} />
+        </div>
       </div>
       <p> hp: {pokemon?.hp}</p>
       <p> atk: {pokemon?.atk}</p>
