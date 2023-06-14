@@ -1,5 +1,5 @@
 // This file exports information to style the Dropdown component
-// and the Pokemon data model
+// and the Pokemon data models
 
 import chroma from 'chroma-js';
 
@@ -37,7 +37,23 @@ export interface Pokemon {
   hp: number;
   atk: number;
   def: number;
+  spDef?: number;
+  spAtk?: number;
+  speed?: number;
   front_sprite: string;
   typePrimary: string;
   typeSecondary?: string;
 }
+
+export const pkmnMaxstats: Pokemon = {
+  name: 'PokemnMaxStatsObject',
+  id: 0,
+  hp: 255,
+  atk: 190,
+  def: 230,
+  spDef: 230,
+  spAtk: 194,
+  speed: 180,
+  front_sprite: 'null',
+  typePrimary: 'null',
+};

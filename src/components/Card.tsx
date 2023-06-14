@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect, useState } from 'react';
-import { Pokemon } from '../data';
+import { Pokemon, pkmnMaxstats } from '../data';
 import Types from './Types';
 
 const Card = () => {
@@ -57,9 +57,11 @@ const Card = () => {
           <img src={pokemon?.front_sprite} />
         </div>
       </div>
-      <p> hp: {pokemon?.hp}</p>
-      <p> atk: {pokemon?.atk}</p>
-      <p> def: {pokemon?.def}</p>
+      <div className="card__stats">
+        <p> hp: {pokemon?.hp}</p>
+        <p> atk: {pokemon?.atk}</p>
+        <p> def: {pokemon?.def}</p>
+      </div>
     </div>
   );
 };
