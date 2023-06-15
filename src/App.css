@@ -354,3 +354,10 @@ body {
     height: 1rem;
     justify-content: space-between;
   }
+
+  .card__flavor-text{
+    border: 4px solid #84acfa;
+    background-color: var(--light-background-light-endpoint);
+    border-radius: 1rem;
+    padding-left: 0.25rem;
+  }
