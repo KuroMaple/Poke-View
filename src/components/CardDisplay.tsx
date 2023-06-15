@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Card from './Card';
 
 const CardDisplay = () => {
-  const [cards, setCards] = useState(Array(7).fill(<Card />));
+  const [cards, setCards] = useState(Array(5).fill(<Card />));
 
   const handleAddCards = () => {
     const newCard = <Card />;

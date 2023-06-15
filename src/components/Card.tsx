@@ -14,7 +14,7 @@ const Card = () => {
   };
 
   const processText = (text: string) => {
-    text.replace(/\n|\f/g, "&nbsp;");
+    text = text.replace(/\n|\f/g, ' ');
     console.log(text);
     return text;
   };
@@ -51,7 +51,15 @@ const Card = () => {
           pkmnData.typeSecondary = pokemonData.types[1].type.name;
         }
 
-        const flavorText = speciesData.flavor_text_entries[1].flavor_text;
+        // Parse through flavor text until english flavor is found
+        let counter = -1;
+        let flavorText = '';
+        do {
+          ++counter;
+          flavorText = speciesData.flavor_text_entries[counter].flavor_text;
+        } while (
+          speciesData.flavor_text_entries[counter].language.name !== 'en' //control language from here
+        );
 
         setPokemon((prevState) => ({
           ...prevState,
@@ -98,7 +106,7 @@ const Card = () => {
         />
       </div>
       <div className="card__flavor-text">
-        <span>{processText(pokemon.flavorText ?? '')}</span>
+        <p>{processText(pokemon.flavorText ?? '')}</p>
       </div>
     </div>
   );
