@@ -13,6 +13,11 @@ const Card = () => {
     return name.charAt(0).toUpperCase() + name.slice(1);
   };
 
+  const processText = (text: string) => {
+    text.replace(/\n|\f/g, "&nbsp;");
+    console.log(text);
+    return text;
+  };
   const [pokemon, setPokemon] = useState<Pokemon>(pkmnMaxstats);
 
   useEffect(() => {
@@ -93,7 +98,7 @@ const Card = () => {
         />
       </div>
       <div className="card__flavor-text">
-        <span>{pokemon.flavorText}</span>
+        <span>{processText(pokemon.flavorText ?? '')}</span>
       </div>
     </div>
   );
