@@ -236,6 +236,7 @@ body {
     position: relative;
     border: 4px solid #b0cb9d;
     border-radius: 15px;
+    margin-bottom: 1rem;
     
 }
 
@@ -338,4 +339,17 @@ body {
 
   .normal {
     background-color: var(--type-normal);
+  }
+
+  .card__stats{
+    display: flex;
+    flex-direction: column;
+    z-index: 15;
+  }
+  .card__stats-single {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 1rem;
+    justify-content: space-between;
   }

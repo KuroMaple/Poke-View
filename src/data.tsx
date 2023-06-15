@@ -43,11 +43,12 @@ export interface Pokemon {
   front_sprite: string;
   typePrimary: string;
   typeSecondary?: string;
+  flavorText?: string;
 }
 
 export const pkmnMaxstats: Pokemon = {
   name: 'PokemnMaxStatsObject',
-  id: 0,
+  id: 1,
   hp: 255,
   atk: 190,
   def: 230,
