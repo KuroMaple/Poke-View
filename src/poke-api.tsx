@@ -1,5 +1,5 @@
 const pokeAPI = {
-  getPokemon: async (id: string) => {
+  getPokemon: async (id: number) => {
     try {
       const pokemonResponse = await fetch(
         'https://pokeapi.co/api/v2/pokemon/' + id

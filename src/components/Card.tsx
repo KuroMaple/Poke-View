@@ -14,7 +14,7 @@ const Card: React.FC<Props> = ({ id }) => {
   // State that holds all the pokemon Data information
   const [pokemon, setPokemon] = useState<Pokemon>(pkmnMaxstats);
   // Determines cards Flip status
-  const [isFlipped, setIsFlipped] = useState(true);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const randomPokemon500 = () => {
     return Math.floor(Math.random() * 500 + 1).toString();
@@ -36,11 +36,12 @@ const Card: React.FC<Props> = ({ id }) => {
   };
 
   useEffect(() => {
+    console.log('Card Child use effect');
     const fetchData = async () => {
       try {
         const api = pokeAPI;
-        const pokemonData = await api.getPokemon(randomPokemon500()); //API calls
-        const speciesData = await api.getSpecies(pokemonData.id);
+        const pokemonData = await api.getPokemon(id); //API calls
+        const speciesData = await api.getSpecies(id);
         console.log(speciesData);
         // Process the fetched data
         const pkmnData: Pokemon = {
