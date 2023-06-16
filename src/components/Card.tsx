@@ -3,8 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { Pokemon, pkmnMaxstats } from '../data';
 import Types from './Types';
 import CardStat from './CardStat';
+import pokeAPI from '../poke-api';
+import ReactCardFlip from 'react-card-flip';
 
-const Card = () => {
+interface Props {
+  id: number;
+}
+
+const Card: React.FC<Props> = ({ id }) => {
+  // State that holds all the pokemon Data information
+  const [pokemon, setPokemon] = useState<Pokemon>(pkmnMaxstats);
+  // Determines cards Flip status
+  const [isFlipped, setIsFlipped] = useState(true);
+
   const randomPokemon500 = () => {
     return Math.floor(Math.random() * 500 + 1).toString();
   };
@@ -15,26 +26,21 @@ const Card = () => {
 
   const processText = (text: string) => {
     text = text.replace(/\n|\f/g, ' ');
-    console.log(text);
     return text;
   };
-  const [pokemon, setPokemon] = useState<Pokemon>(pkmnMaxstats);
+
+  // handles Card flipping
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsFlipped((prevState) => !prevState);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const pokemonResponse = await fetch(
-          'https://pokeapi.co/api/v2/pokemon/' + randomPokemon500()
-        );
-
-        const pokemonData = await pokemonResponse.json();
-
-        // Fetch species data
-        const speciesResponse = await fetch(
-          'https://pokeapi.co/api/v2/pokemon-species/' + pokemonData.id
-        );
-
-        const speciesData = await speciesResponse.json();
+        const api = pokeAPI;
+        const pokemonData = await api.getPokemon(randomPokemon500()); //API calls
+        const speciesData = await api.getSpecies(pokemonData.id);
         console.log(speciesData);
         // Process the fetched data
         const pkmnData: Pokemon = {
@@ -74,41 +80,45 @@ const Card = () => {
   }, []);
 
   return (
-    <div className="card">
-      <div className="card__header">
-        <div className="card__id">
-          <p>{pokemon?.id}.</p>
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+      <div className="card" onClick={handleClick}>
+        <div className="card__header">
+          <div className="card__id">
+            <p>{pokemon?.id}.</p>
+          </div>
+          <p className="card__header__name">{capitalizeName(pokemon.name)}</p>
+          <Types
+            typePrimary={pokemon.typePrimary}
+            typeSecondary={pokemon?.typeSecondary ?? ''}
+          />
         </div>
-        <p className="card__header__name">{capitalizeName(pokemon.name)}</p>
-        <Types
-          typePrimary={pokemon.typePrimary}
-          typeSecondary={pokemon?.typeSecondary ?? ''}
-        />
+        <div className="card__img">
+          <img src={pokemon?.front_sprite} />
+        </div>
+        <div className="card__stats">
+          <CardStat
+            statName="hp"
+            statValue={pokemon?.hp}
+            maxStat={pkmnMaxstats.hp}
+          />
+          <CardStat
+            statName="atk"
+            statValue={pokemon?.atk}
+            maxStat={pkmnMaxstats.atk}
+          />
+          <CardStat
+            statName="def"
+            statValue={pokemon?.def}
+            maxStat={pkmnMaxstats.def}
+          />
+        </div>
+        <div className="card__flavor-text">
+          <p>{processText(pokemon.flavorText ?? '')}</p>
+        </div>
       </div>
-      <div className="card__img">
-        <img src={pokemon?.front_sprite} />
-      </div>
-      <div className="card__stats">
-        <CardStat
-          statName="hp"
-          statValue={pokemon?.hp}
-          maxStat={pkmnMaxstats.hp}
-        />
-        <CardStat
-          statName="atk"
-          statValue={pokemon?.atk}
-          maxStat={pkmnMaxstats.atk}
-        />
-        <CardStat
-          statName="def"
-          statValue={pokemon?.def}
-          maxStat={pkmnMaxstats.def}
-        />
-      </div>
-      <div className="card__flavor-text">
-        <p>{processText(pokemon.flavorText ?? '')}</p>
-      </div>
-    </div>
+
+      <div className="card__back" onClick={handleClick}></div>
+    </ReactCardFlip>
   );
 };
 
