@@ -164,6 +164,12 @@ body {
   cursor: pointer;
 }
 
+.card-display__button-holder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card-display__button:hover {
   background-color: #45a049;
 }

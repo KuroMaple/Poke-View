@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-key */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Card from './Card';
 import { motion } from 'framer-motion';
 import React from 'react';
+import { TypeContext } from '../context/typeContext';
 
 const CardDisplay = () => {
+  // Contains the selected type to filter by
+  const providedValue = useContext(TypeContext);
+
   // Generates random number between 1 and 500
   //  Cardcount MUST be LESS than 500
   const randomPokemon500 = () => {
@@ -28,19 +32,27 @@ const CardDisplay = () => {
 
   return (
     <div className="card-display">
-      <button
-        className="card-display__button"
-        onClick={() => {
-          handleAddCards();
-        }}
-      >
-        Load More Pok&#233;mon
-      </button>
+      <div className="card-display__button-holder">
+        <button
+          className="card-display__button"
+          onClick={() => {
+            handleAddCards();
+          }}
+        >
+          Load More Pok&#233;mon
+        </button>
+      </div>
+
       <motion.div
         className="card-display__card-holder"
         initial="initial"
         animate="animate"
       >
+        {/* {uniquePokeIDs
+          .filter((type) => type === providedValue.type)
+          .map((id) => (
+            <Card key={id} id={id} />
+          ))} */}
         {uniquePokeIDs.map((id) => (
           <Card key={id} id={id} />
         ))}
