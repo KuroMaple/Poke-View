@@ -21,7 +21,6 @@ const Card: React.FC<Props> = ({ id }) => {
         const api = pokeAPI;
         const pokemonData = await api.getPokemon(id); //API calls
         const speciesData = await api.getSpecies(id);
-        console.log(speciesData);
         // Process the fetched data
         const pkmnData: Pokemon = {
           name: pokemonData.name,

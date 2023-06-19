@@ -11,38 +11,23 @@ const CardDisplay = () => {
     return Math.floor(Math.random() * (500 + 1));
   };
 
-  // Used to ensure unique id's
-  const [uniqueIDs, setUniqueIDs] = useState<number[]>([]);
-
+  // Array corresponding to each unique poke ID
+  const [uniquePokeIDs, setUniquePokeIDs] = useState<number[]>([]);
   const handleAddCards = () => {
     // eslint-disable-next-line no-constant-condition
     let numFound = false;
     let r = 0;
     while (!numFound) {
       r = randomPokemon500();
-      if (uniqueIDs.indexOf(r) === -1) {
-        console.log('unique id: ' + r);
+      if (uniquePokeIDs.indexOf(r) === -1) {
         numFound = true;
       }
     }
-    setUniqueIDs((current) => [...current, r]); // TO DO: ADD new pokemon to front of array not back
+    setUniquePokeIDs((oldArray) => [r, ...oldArray]);
   };
-
-  useEffect(() => {
-    
-  }, []);
 
   return (
     <div className="card-display">
-      <motion.div
-        className="card-display__card-holder"
-        initial="initial"
-        animate="animate"
-      >
-        {uniqueIDs.map((id) => (
-          <Card id={id} />
-        ))}
-      </motion.div>
       <button
         className="card-display__button"
         onClick={() => {
@@ -51,6 +36,15 @@ const CardDisplay = () => {
       >
         Load More Pok&#233;mon
       </button>
+      <motion.div
+        className="card-display__card-holder"
+        initial="initial"
+        animate="animate"
+      >
+        {uniquePokeIDs.map((id) => (
+          <Card key={id} id={id} />
+        ))}
+      </motion.div>
     </div>
   );
 };
