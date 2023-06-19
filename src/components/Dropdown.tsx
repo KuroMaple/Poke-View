@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Select, { StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
 import { ColourOption, colourOptions } from '../data';
+import { PokemonContext } from '../context/typeContext';
 
 const dot = (color = 'transparent') => ({
   alignItems: 'center',
@@ -57,13 +58,14 @@ const colourStyles: StylesConfig<ColourOption> = {
 };
 
 const Dropdown = () => {
+  const type = useContext(PokemonContext);
   return (
     <div className="filter-box__dropdown">
       <Select
-        defaultValue={colourOptions[0]}
         options={colourOptions}
         placeholder="Filter by Type"
         styles={colourStyles}
+        value={type}
       />
     </div>
   );

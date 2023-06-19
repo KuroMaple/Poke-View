@@ -60,7 +60,6 @@ const Card: React.FC<Props> = ({ id }) => {
   }, []);
 
   const flipper = () => {
-    console.log('pokemon id: ' + pokemon.id);
     setIsFlipped(false);
   };
 

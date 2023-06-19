@@ -153,6 +153,31 @@ body {
     outline: none;
 }
 
+.card-display__button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.5rem;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card-display__button:hover {
+  background-color: #45a049;
+}
+
+.card-display__button:active {
+  background-color: #3e8e41;
+}
+
+.card-display__button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+
 .card-display__card-holder {
     min-height: fit-content;
     margin: 2rem;
