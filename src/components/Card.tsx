@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect, useState } from 'react';
 import { Pokemon, pkmnMaxstats } from '../data';
-import Types from './Types';
-import CardStat from './CardStat';
 import pokeAPI from '../poke-api';
-import ReactCardFlip from 'react-card-flip';
+import FrontCard from './FrontCard';
+import { motion } from 'framer-motion';
 
 interface Props {
   id: number;
@@ -14,29 +13,9 @@ const Card: React.FC<Props> = ({ id }) => {
   // State that holds all the pokemon Data information
   const [pokemon, setPokemon] = useState<Pokemon>(pkmnMaxstats);
   // Determines cards Flip status
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const randomPokemon500 = () => {
-    return Math.floor(Math.random() * 500 + 1).toString();
-  };
-
-  const capitalizeName = (name: string) => {
-    return name.charAt(0).toUpperCase() + name.slice(1);
-  };
-
-  const processText = (text: string) => {
-    text = text.replace(/\n|\f/g, ' ');
-    return text;
-  };
-
-  // handles Card flipping
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsFlipped((prevState) => !prevState);
-  };
+  const [isFlipped, setIsFlipped] = useState(true);
 
   useEffect(() => {
-    console.log('Card Child use effect');
     const fetchData = async () => {
       try {
         const api = pokeAPI;
@@ -80,46 +59,31 @@ const Card: React.FC<Props> = ({ id }) => {
     fetchData();
   }, []);
 
-  return (
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <div className="card" onClick={handleClick}>
-        <div className="card__header">
-          <div className="card__id">
-            <p>{pokemon?.id}.</p>
-          </div>
-          <p className="card__header__name">{capitalizeName(pokemon.name)}</p>
-          <Types
-            typePrimary={pokemon.typePrimary}
-            typeSecondary={pokemon?.typeSecondary ?? ''}
-          />
-        </div>
-        <div className="card__img">
-          <img src={pokemon?.front_sprite} />
-        </div>
-        <div className="card__stats">
-          <CardStat
-            statName="hp"
-            statValue={pokemon?.hp}
-            maxStat={pkmnMaxstats.hp}
-          />
-          <CardStat
-            statName="atk"
-            statValue={pokemon?.atk}
-            maxStat={pkmnMaxstats.atk}
-          />
-          <CardStat
-            statName="def"
-            statValue={pokemon?.def}
-            maxStat={pkmnMaxstats.def}
-          />
-        </div>
-        <div className="card__flavor-text">
-          <p>{processText(pokemon.flavorText ?? '')}</p>
-        </div>
-      </div>
+  const flipper = () => {
+    console.log('pokemon id: ' + pokemon.id);
+    setIsFlipped(false);
+  };
 
-      <div className="card__back" onClick={handleClick}></div>
-    </ReactCardFlip>
+  const flipCard = setTimeout(flipper, 1500);
+
+  const FlipVariant = {
+    initial: {
+      y: '0%',
+    },
+    animate: {
+      rotateY: 90,
+      transition: { duration: 1 },
+    },
+  };
+
+  return (
+    <div>
+      {isFlipped ? (
+        <motion.div className="card__back" variants={FlipVariant}></motion.div>
+      ) : (
+        <FrontCard pokemon={pokemon} />
+      )}
+    </div>
   );
 };
 

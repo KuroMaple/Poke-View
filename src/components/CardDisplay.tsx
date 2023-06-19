@@ -1,23 +1,10 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 import Card from './Card';
-import { Pokemon } from '../data';
-import { render } from 'react-dom';
+import { motion } from 'framer-motion';
+import React from 'react';
 
 const CardDisplay = () => {
-  const handleAddCards = () => {
-    const goalLength = uniqueIDs.length + 1;
-
-    while (uniqueIDs.length < goalLength) {
-      const r = Math.floor(Math.random() * 500 + 1);
-      if (uniqueIDs.indexOf(r) === -1) {
-        console.log('unique id: ' + r);
-        setUniqueIDs([...uniqueIDs, r]);
-        break;
-      }
-    }
-  };
-
   // Generates an array of size cardCount unique random numbers from 500 pokemon list
   //  Cardcount MUST be LESS than 500
   const randomPokemon500 = (cardCount: number) => {
@@ -36,11 +23,20 @@ const CardDisplay = () => {
   };
 
   // Used to ensure unique id's
-  const [uniqueIDs, setUniqueIDs] = useState<number[]>(randomPokemon500(7));
+  const [uniqueIDs, setUniqueIDs] = useState<number[]>(randomPokemon500(6));
 
-  useEffect(() => {
-    console.log('card Display use effect');
-  }, []);
+  const handleAddCards = () => {
+    const goalLength = uniqueIDs.length + 1;
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const r = Math.floor(Math.random() * 500 + 1);
+      if (uniqueIDs.indexOf(r) === -1) {
+        setUniqueIDs((current) => [...current, r]); // TO DO: ADD new pokemon to front of array not back
+        console.log(uniqueIDs);
+        break;
+      }
+    }
+  };
 
   return (
     <div className="card-display">
@@ -52,11 +48,15 @@ const CardDisplay = () => {
       >
         Load More Pok&#233;mon
       </button>
-      <div className="card-display__card-holder">
+      <motion.div
+        className="card-display__card-holder"
+        initial="initial"
+        animate="animate"
+      >
         {uniqueIDs.map((id) => (
           <Card id={id} />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
