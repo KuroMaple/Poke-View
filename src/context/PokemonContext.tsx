@@ -12,9 +12,14 @@ interface Props {
   handleAddRandomCard: () => void;
   snackOpen: boolean;
   setSnackOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleAddCardByName: (name: string) => void;
+  variant: string;
+  setVariant: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const generatePokemon = async (id: number): Promise<Pokemon> => {
+export const generatePokemon = async (
+  id: number | string
+): Promise<Pokemon> => {
   const api = pokeAPI;
   const pokemonData = await api.getPokemon(id); //API calls
   const speciesData = await api.getSpecies(id);

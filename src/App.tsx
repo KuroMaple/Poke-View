@@ -14,6 +14,7 @@ import {
 function App() {
   // Corresponds to the current filterbox type filters
   const [type, setType] = useState<PokemonType>('all');
+
   // Object to be passed through context
   const providerValue = {
     type,
@@ -24,21 +25,38 @@ function App() {
   const [pokemonCards, setPokemonCards] = useState<Pokemon[]>([]);
   // Corresponds to the Error snack bar
   const [snackOpen, setSnackOpen] = useState(false);
+  // Snackbar variant
+  const [variant, setVariant] = useState('');
 
-  // Checks the unqiuness of the passed id
-  const isUnique = (id: number): boolean => {
+  // Checks the unqiuness of the passed id, based on if its a name or number
+  const isUnique = (id: number | string): boolean => {
     let unique = true;
-    pokemonCards.map((curPkmn) => {
-      console.log('curPkmn id: ' + curPkmn.id + ' checking id: ' + id);
-      if (curPkmn.id === id) {
-        unique = false;
-      }
-    });
+    if (typeof id === 'number') {
+      pokemonCards.map((curPkmn) => {
+        if (curPkmn.id === id) {
+          unique = false;
+        }
+      });
+    } else {
+      pokemonCards.map((curPkmn) => {
+        if (curPkmn.name === id) {
+          unique = false;
+        }
+      });
+    }
+
     return unique;
   };
 
-  // outputs snackbar error to user
+  // Snackbar Max pokemon reached error
   const handleMaxPkmnReached = () => {
+    setVariant('MaxPkmn');
+    setSnackOpen(true);
+  };
+
+  // Snackbar Duplicate pokemon error
+  const handleDplctePkmn = () => {
+    setVariant('DplctePkmn');
     setSnackOpen(true);
   };
 
@@ -62,12 +80,28 @@ function App() {
     }
   };
 
+  // Adds a pokemon by name only if it does not exist in array already
+  const handleAddCardByName = (name: string) => {
+    if (isUnique(name)) {
+      generatePokemon(name).then((newPkmn) => {
+        setPokemonCards((oldArray) => [newPkmn, ...oldArray]);
+      });
+    } else if (pokemonCards.length === maxPokemonCount) {
+      handleMaxPkmnReached();
+    } else {
+      handleDplctePkmn();
+    }
+  };
+
   const pkmnProvider = {
     pokemonCards,
     setPokemonCards,
     handleAddRandomCard,
     snackOpen,
     setSnackOpen,
+    handleAddCardByName,
+    variant,
+    setVariant,
   };
 
   return (

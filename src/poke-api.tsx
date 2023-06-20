@@ -1,26 +1,10 @@
 import { maxPokemonCount } from './data';
 
 const pokeAPI = {
-  getPokemon: async (id: number) => {
+  getPokemon: async (id: number | string) => {
     try {
       const pokemonResponse = await fetch(
         'https://pokeapi.co/api/v2/pokemon/' + id
-      );
-
-      const pokemonData = await pokemonResponse.json();
-      return pokemonData;
-    } catch (error) {
-      // Handle error
-      console.error('Error fetching Pokemon Data:', error);
-      throw error;
-    }
-  },
-
-  getPokemonByName: async (name: string) => {
-    try {
-      name.toLowerCase();
-      const pokemonResponse = await fetch(
-        'https://pokeapi.co/api/v2/pokemon/' + name
       );
 
       const pokemonData = await pokemonResponse.json();
@@ -48,7 +32,7 @@ const pokeAPI = {
     }
   },
 
-  getSpecies: async (id: number) => {
+  getSpecies: async (id: number | string) => {
     try {
       const speciesResponse = await fetch(
         'https://pokeapi.co/api/v2/pokemon-species/' + id
