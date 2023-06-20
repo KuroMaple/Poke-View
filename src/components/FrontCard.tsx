@@ -24,7 +24,7 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
     },
     animate: {
       rotateY: 0,
-      transition: { duration: 1 },
+      transition: { duration: 0.25 },
     },
   };
 

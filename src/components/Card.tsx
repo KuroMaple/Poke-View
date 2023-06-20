@@ -59,7 +59,7 @@ const Card: React.FC<Props> = ({ pkmn }) => {
     setIsFlipped(false);
   };
 
-  const flipCard = setTimeout(flipper, 1500);
+  const flipCard = setTimeout(flipper, 500);
 
   const FlipVariant = {
     initial: {
@@ -67,7 +67,7 @@ const Card: React.FC<Props> = ({ pkmn }) => {
     },
     animate: {
       rotateY: 90,
-      transition: { duration: 1 },
+      transition: { duration: 0.25 },
     },
   };
 
