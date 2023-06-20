@@ -43,7 +43,7 @@ const CardStat: React.FC<Props> = ({ statName, statValue, maxStat }) => {
       <BorderLinearProgress
         variant="determinate"
         value={(statValue / maxStat) * 100}
-        sx={{ width: '72%' }}
+        sx={{ width: '70%' }}
       />
     </div>
   );

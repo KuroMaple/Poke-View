@@ -4,21 +4,21 @@ import Card from './Card';
 import { motion } from 'framer-motion';
 import React from 'react';
 import { TypeContext } from '../context/typeContext';
-import { Pokemon } from '../data';
+import { Pokemon, maxPokemonCount } from '../data';
 import pokeAPI from '../poke-api';
+import SnackBar from './SnackBar';
 
 const CardDisplay = () => {
+  // Corresponds to the Error snack bar
+  const [snackOpen, setSnackOpen] = useState(false);
+
   // Contains the selected type to filter by
   const providedValue = useContext(TypeContext);
 
   // Generates random number between 1 and 500
-  //  Cardcount MUST be LESS than 500
   const randomPokemon500 = () => {
-    return Math.floor(Math.random() * (500 + 1));
+    return Math.floor(Math.random() * maxPokemonCount) + 1;
   };
-
-  // Array corresponding to each unique poke ID
-  const [uniquePokeIDs, setUniquePokeIDs] = useState<number[]>([]);
 
   // State that holds all the pokemon Data information
   const [pokemonCards, setPokemonCards] = useState<Pokemon[]>([]);
@@ -56,13 +56,19 @@ const CardDisplay = () => {
 
   // Checks the unqiuness of the passed id
   const isUnique = (id: number): boolean => {
-    pokemonCards.forEach((curPkmn) => {
+    let unique = true;
+    pokemonCards.map((curPkmn) => {
+      console.log('curPkmn id: ' + curPkmn.id + ' checking id: ' + id);
       if (curPkmn.id === id) {
-        return false;
+        unique = false;
       }
     });
+    return unique;
+  };
 
-    return true;
+  // outputs snackbar error to user
+  const handleMaxPkmnReached = () => {
+    setSnackOpen(true);
   };
 
   // Generates a unique ID, makes the API calls and adds to the Pokemon Array
@@ -74,12 +80,15 @@ const CardDisplay = () => {
       r = randomPokemon500();
       if (isUnique(r)) {
         numFound = true;
+        console.log('unique id: ' + r);
+        generatePokemon(r).then((newPkmn) => {
+          setPokemonCards((oldArray) => [newPkmn, ...oldArray]);
+        });
+      } else if (pokemonCards.length === maxPokemonCount) {
+        handleMaxPkmnReached();
+        break;
       }
     }
-    generatePokemon(r).then((newPkmn) => {
-      setPokemonCards((oldArray) => [newPkmn, ...oldArray]);
-    });
-    console.log(pokemonCards);
   };
 
   // Evaluates whether currentPkmn type matches drop down selected type
@@ -104,11 +113,14 @@ const CardDisplay = () => {
           className="card-display__button"
           onClick={() => {
             handleAddCards();
+            console.log(pokemonCards);
           }}
         >
           Load More Pok&#233;mon
         </button>
       </div>
+
+      <SnackBar snackOpen={snackOpen} setSnackOpen={setSnackOpen} />
 
       <motion.div
         className="card-display__card-holder"
