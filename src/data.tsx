@@ -9,7 +9,7 @@ export interface ColourOption {
   color: string;
 }
 
-export const maxPokemonCount = 5;
+export const maxPokemonCount = 500;
 
 export const colourOptions: ColourOption[] = [
   { value: 'all', label: 'All Types', color: '#808080' },
@@ -46,6 +46,11 @@ export interface Pokemon {
   typePrimary: string;
   typeSecondary?: string;
   flavorText?: string;
+}
+
+export interface PokemonNameObject {
+  name: string;
+  url: string;
 }
 
 export const pkmnMaxstats: Pokemon = {
