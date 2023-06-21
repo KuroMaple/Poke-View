@@ -79,7 +79,6 @@ function App() {
       r = randomPokemon500();
       if (isUnique(r)) {
         numFound = true;
-        console.log('unique id: ' + r);
         generatePokemon(r).then((newPkmn) => {
           setPokemonCards((oldArray) => [newPkmn, ...oldArray]);
         });

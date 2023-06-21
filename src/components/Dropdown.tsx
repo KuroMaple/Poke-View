@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react';
 import Select, { MultiValue, SingleValue, StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
-import { ColourOption, colourOptions } from '../data';
+import { ColourOption, colourOptionsDark, colourOptionsLight } from '../data';
 import { PokemonType, TypeContext } from '../context/typeContext';
 import { DarkModeContext } from '../context/DarkModeContext';
 
@@ -153,122 +153,122 @@ const Dropdown = () => {
   };
 
   // handles the onchange effects of the dropdown
-  const updateType = (
+  const updateTypeLight = (
     e: MultiValue<ColourOption> | SingleValue<ColourOption>
   ) => {
     switch (e) {
-      case colourOptions[0]:
+      case colourOptionsLight[0] || colourOptionsDark[0]:
         providedValue.setType('all');
         document.body.style.setProperty(
           'background-color',
           'var(--background)'
         );
         break;
-      case colourOptions[1]:
+      case colourOptionsLight[1]:
         providedValue.setType('normal');
         document.body.style.setProperty(
           'background-color',
           'var(--type-normal)'
         );
         break;
-      case colourOptions[2]:
+      case colourOptionsLight[2]:
         providedValue.setType('fire');
         document.body.style.setProperty('background-color', 'var(--type-fire)');
         break;
-      case colourOptions[3]:
+      case colourOptionsLight[3]:
         providedValue.setType('water');
         document.body.style.setProperty(
           'background-color',
           'var(--type-water)'
         );
         break;
-      case colourOptions[4]:
+      case colourOptionsLight[4]:
         providedValue.setType('grass');
         document.body.style.setProperty(
           'background-color',
           'var(--type-grass)'
         );
         break;
-      case colourOptions[5]:
+      case colourOptionsLight[5]:
         providedValue.setType('electric');
         document.body.style.setProperty(
           'background-color',
           'var(--type-electric)'
         );
         break;
-      case colourOptions[6]:
+      case colourOptionsLight[6]:
         providedValue.setType('ice');
         document.body.style.setProperty('background-color', 'var(--type-ice)');
         break;
-      case colourOptions[7]:
+      case colourOptionsLight[7]:
         providedValue.setType('fighting');
         document.body.style.setProperty(
           'background-color',
           'var(--type-fighting)'
         );
         break;
-      case colourOptions[8]:
+      case colourOptionsLight[8]:
         providedValue.setType('poison');
         document.body.style.setProperty(
           'background-color',
           'var(--type-poison)'
         );
         break;
-      case colourOptions[9]:
+      case colourOptionsLight[9]:
         providedValue.setType('ground');
         document.body.style.setProperty(
           'background-color',
           'var(--type-ground)'
         );
         break;
-      case colourOptions[10]:
+      case colourOptionsLight[10]:
         providedValue.setType('flying');
         document.body.style.setProperty(
           'background-color',
           'var(--type-flying)'
         );
         break;
-      case colourOptions[11]:
+      case colourOptionsLight[11]:
         providedValue.setType('psychic');
         document.body.style.setProperty(
           'background-color',
           'var(--type-psychic)'
         );
         break;
-      case colourOptions[12]:
+      case colourOptionsLight[12]:
         providedValue.setType('bug');
         document.body.style.setProperty('background-color', 'var(--type-bug)');
         break;
-      case colourOptions[13]:
+      case colourOptionsLight[13]:
         providedValue.setType('rock');
         document.body.style.setProperty('background-color', 'var(--type-rock)');
         break;
-      case colourOptions[14]:
+      case colourOptionsLight[14]:
         providedValue.setType('ghost');
         document.body.style.setProperty(
           'background-color',
           'var(--type-ghost)'
         );
         break;
-      case colourOptions[15]:
+      case colourOptionsLight[15]:
         providedValue.setType('dragon');
         document.body.style.setProperty(
           'background-color',
           'var(--type-dragon)'
         );
         break;
-      case colourOptions[16]:
+      case colourOptionsLight[16]:
         providedValue.setType('dark');
         document.body.style.setProperty('background-color', 'var(--type-dark)');
         break;
-      case colourOptions[17]:
+      case colourOptionsLight[17]:
         providedValue.setType('steel');
         document.body.style.setProperty(
           'background-color',
           'var(--type-steel)'
         );
         break;
-      case colourOptions[18]:
+      case colourOptionsLight[18]:
         providedValue.setType('fairy');
         document.body.style.setProperty(
           'background-color',
@@ -278,28 +278,154 @@ const Dropdown = () => {
       default:
         break;
     }
-    console.log(e);
   };
 
+  // handles the onchange effects of the dropdown
+  const updateTypeDark = (
+    e: MultiValue<ColourOption> | SingleValue<ColourOption>
+  ) => {
+    switch (e) {
+      case colourOptionsDark[0]:
+        providedValue.setType('all');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--background)'
+        );
+        break;
+      case colourOptionsDark[1]:
+        providedValue.setType('normal');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-normal)'
+        );
+        break;
+      case colourOptionsDark[2]:
+        providedValue.setType('fire');
+        document.body.style.setProperty('background-color', 'var(--type-fire)');
+        break;
+      case colourOptionsDark[3]:
+        providedValue.setType('water');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-water)'
+        );
+        break;
+      case colourOptionsDark[4]:
+        providedValue.setType('grass');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-grass)'
+        );
+        break;
+      case colourOptionsDark[5]:
+        providedValue.setType('electric');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-electric)'
+        );
+        break;
+      case colourOptionsDark[6]:
+        providedValue.setType('ice');
+        document.body.style.setProperty('background-color', 'var(--type-ice)');
+        break;
+      case colourOptionsDark[7]:
+        providedValue.setType('fighting');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-fighting)'
+        );
+        break;
+      case colourOptionsDark[8]:
+        providedValue.setType('poison');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-poison)'
+        );
+        break;
+      case colourOptionsDark[9]:
+        providedValue.setType('ground');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-ground)'
+        );
+        break;
+      case colourOptionsDark[10]:
+        providedValue.setType('flying');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-flying)'
+        );
+        break;
+      case colourOptionsDark[11]:
+        providedValue.setType('psychic');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-psychic)'
+        );
+        break;
+      case colourOptionsDark[12]:
+        providedValue.setType('bug');
+        document.body.style.setProperty('background-color', 'var(--type-bug)');
+        break;
+      case colourOptionsDark[13]:
+        providedValue.setType('rock');
+        document.body.style.setProperty('background-color', 'var(--type-rock)');
+        break;
+      case colourOptionsDark[14]:
+        providedValue.setType('ghost');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-ghost)'
+        );
+        break;
+      case colourOptionsDark[15]:
+        providedValue.setType('dragon');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-dragon)'
+        );
+        break;
+      case colourOptionsDark[16]:
+        providedValue.setType('dark');
+        document.body.style.setProperty('background-color', 'var(--type-dark)');
+        break;
+      case colourOptionsDark[17]:
+        providedValue.setType('steel');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-steel)'
+        );
+        break;
+      case colourOptionsDark[18]:
+        providedValue.setType('fairy');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-fairy)'
+        );
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <div className="filter-box__dropdown">
       {isDarkMode ? (
         <Select
-          options={colourOptions}
+          options={colourOptionsDark}
           placeholder="Filter by Type"
           styles={colourStylesDark}
-          value={colourOptions[typeToColour(providedValue.type)]}
-          onChange={(e) => updateType(e)}
+          value={colourOptionsDark[typeToColour(providedValue.type)]}
+          onChange={(e) => updateTypeDark(e)}
           className="react-select-container"
           classNamePrefix="react-select"
         />
       ) : (
         <Select
-          options={colourOptions}
+          options={colourOptionsLight}
           placeholder="Filter by Type"
           styles={colourStylesLight}
-          value={colourOptions[typeToColour(providedValue.type)]}
-          onChange={(e) => updateType(e)}
+          value={colourOptionsLight[typeToColour(providedValue.type)]}
+          onChange={(e) => updateTypeLight(e)}
           className="react-select-container"
           classNamePrefix="react-select"
         />

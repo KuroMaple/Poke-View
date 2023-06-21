@@ -3,8 +3,6 @@ import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { DarkModeContext } from '../../context/DarkModeContext';
 
 const DarkModeToggle = () => {
-  //const [isDarkMode, setDarkMode] = React.useState(false);
-
   const toggleDarkMode = (checked: boolean) => {
     setDarkMode(checked);
   };
