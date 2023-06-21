@@ -34,11 +34,11 @@ export const colourOptionsLight: ColourOption[] = [
 ];
 
 export const colourOptionsDark: ColourOption[] = [
-  { value: 'all', label: 'All Types', color: '#808080' },
+  { value: 'all', label: 'All Types', color: '#C0C0C0' },
   { value: 'normal', label: 'Normal', color: '#A8A878' },
   { value: 'fire', label: 'Fire', color: '#F08030' },
   { value: 'water', label: 'Water', color: '#6890F0' },
-  { value: 'grass', label: 'Grass', color: '#56AE56' },
+  { value: 'grass', label: 'Grass', color: '#00FF00' },
   { value: 'electric', label: 'Electric', color: '#F8D030' },
   { value: 'ice', label: 'Ice', color: '#98D8D8' },
   { value: 'fighting', label: 'Fighting', color: '#C03028' },
