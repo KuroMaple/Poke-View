@@ -2,11 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=VT323&display=swap');
 
 :root {
-    --main-logo-yellow: #ffcb05;
-    --main-logo-light-blue: #2a75bb;
-    --light-background-dark-endpoint: #d1e5d9;
-    --light-background-light-endpoint: #e5f1ed;
-    --light-text-color: #000000;
+    --header-main: #ffcb05;
+    --header-accent: #2a75bb;
+    --background: #e5f1ed;
+    --text-color: #000000;
+    --icon-color: grey;
+    --search-list: white;
+    --box-shadow: #ddd;
+    --card-text-border: #84acfa;
+
+    /* Normal */
     --type-normal: #A8A878;
   
     /* Fire */
@@ -62,17 +67,16 @@
 
 }
 
-#root {
-    padding: 0.5rem;
-    font-family: 'Roboto', sans-serif;
-    font-family: 'VT323', monospace;
+body{
+  background-color: var(--background);
 }
 
-body {
-    background-color: var(--light-background-dark-endpoint);
-    background: var(--light-background-light-endpoint);
-    background: linear-gradient(0deg, var(--light-background-light-endpoint) 0%, var(--light-background-dark-endpoint) 100%);
+
+#root {
+  font-family: 'Roboto', sans-serif;
+  font-family: 'VT323', monospace;
 }
+
 
 .main-header {
     display: flex;
@@ -86,27 +90,18 @@ body {
 .main-header__title {
     font-family: 'Pokemon', sans-serif;
     font-weight:lighter;
-    color: var(--main-logo-yellow);
+    color: var(--header-main);
     text-shadow:
-    -0.09rem -0.1rem 0 var(--main-logo-light-blue),  
-    0.22rem -0.13rem 0 var(--main-logo-light-blue),
-    -0.21rem 0.23rem 0 var(--main-logo-light-blue),
-    0.16rem 0.23rem 0 var(--main-logo-light-blue);                                  
+    -0.09rem -0.1rem 0 var(--header-accent),  
+    0.22rem -0.13rem 0 var(--header-accent),
+    -0.21rem 0.23rem 0 var(--header-accent),
+    0.16rem 0.23rem 0 var(--header-accent);                                  
 }
 
 .main-header__button{
-    color: var(--light-text-color); 
     border: none;
     background: none;
-}
-
-.main-header__button svg {
-    margin-right: 0.5rem; /* Adjust the value as needed */
-}
-
-.main-header__button:hover {
-    cursor: pointer;
-    background-color: var(--main-logo-light-blue);
+    height: min-content;
 }
 
 .filter-box {
@@ -126,25 +121,22 @@ body {
 
 
 .filter-box__input-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    
-
-    border: none;
-    box-shadow: 0px 0px 8px #ddd;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: none;
 }
 
 .filter-box__input__search-icon {
     position: absolute;
     left: 0.4rem;
-    color: #aaa;
+    color: var(--icon-color);
 }
 
 .filter-box__input-box__input {
     padding: 8px 16px;
     padding-left: 2rem;
-    border: 2px solid #ccc;
+    border: 2px solid var(--icon-color);
     border-radius: 10px;
     font-size: 16px;
     width: 25rem;
@@ -153,26 +145,28 @@ body {
 
 .filter-box__input-box__input:hover,
 .filter-box__input-box__input:focus {
-    border-color: var(--main-logo-light-blue);
+    border-color: var(--header-accent);
     outline: none;
 }
 
-
+.filter-box__search-container{
+  position: relative;
+}
 .filter-box__results-list{
-  background-color: white;
-  box-shadow: 0px 0px 8px #ddd;
+  background-color: var(--search-list);
+  box-shadow: 0px 0px 8px var(--box-shadow);
   border-radius: 10px;
   max-height: 18.75rem;
   width: 25rem; 
   position: absolute; 
   z-index:999; 
-  top: 18.5%; 
-  left:3%;  
+  top: 100%; 
+  left:1%;  
   overflow: auto;
 }
 
 .filter-box__results-single {
-  outline: solid black 1px;
+  outline: solid var(--text-color) 1px;
   display: flex;
   min-height: 2rem;
   align-items: center;
@@ -181,7 +175,7 @@ body {
 
 .filter-box__results-single:hover {
   cursor: pointer;
-  background-color: gray;
+  background-color: var(--icon-color);
 }
 
 
@@ -247,12 +241,12 @@ body {
     padding-right: 2%;
     border: 4px solid #ffe266;
     transition: all .2s ease-in-out;
-    
+    cursor: pointer;
 }
 
 
 .card__back {
-  background-color: var(--main-logo-light-blue);
+  background-color: var(--header-accent);
   background-image: url('./assets/backPkmnCard.jpg');
   background-repeat: no-repeat;
   background-size: 100% 26rem;
@@ -438,8 +432,8 @@ body {
   }
 
   .card__flavor-text{
-    border: 4px solid #84acfa;
-    background-color: var(--light-background-light-endpoint);
+    border: 4px solid var(--card-text-border);
+    background-color: var(--background);
     border-radius: 1rem;
     padding-left: 0.25rem;
   }

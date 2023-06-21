@@ -113,60 +113,121 @@ const Dropdown = () => {
     switch (e) {
       case colourOptions[0]:
         providedValue.setType('all');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--background)'
+        );
         break;
       case colourOptions[1]:
         providedValue.setType('normal');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-normal)'
+        );
         break;
       case colourOptions[2]:
         providedValue.setType('fire');
+        document.body.style.setProperty('background-color', 'var(--type-fire)');
         break;
       case colourOptions[3]:
         providedValue.setType('water');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-water)'
+        );
         break;
       case colourOptions[4]:
         providedValue.setType('grass');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-grass)'
+        );
         break;
       case colourOptions[5]:
         providedValue.setType('electric');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-electric)'
+        );
         break;
       case colourOptions[6]:
         providedValue.setType('ice');
+        document.body.style.setProperty('background-color', 'var(--type-ice)');
         break;
       case colourOptions[7]:
         providedValue.setType('fighting');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-fighting)'
+        );
         break;
       case colourOptions[8]:
         providedValue.setType('poison');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-poison)'
+        );
         break;
       case colourOptions[9]:
         providedValue.setType('ground');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-ground)'
+        );
         break;
       case colourOptions[10]:
         providedValue.setType('flying');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-flying)'
+        );
         break;
       case colourOptions[11]:
         providedValue.setType('psychic');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-psychic)'
+        );
         break;
       case colourOptions[12]:
         providedValue.setType('bug');
+        document.body.style.setProperty('background-color', 'var(--type-bug)');
         break;
       case colourOptions[13]:
         providedValue.setType('rock');
+        document.body.style.setProperty('background-color', 'var(--type-rock)');
         break;
       case colourOptions[14]:
         providedValue.setType('ghost');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-ghost)'
+        );
         break;
       case colourOptions[15]:
         providedValue.setType('dragon');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-dragon)'
+        );
         break;
       case colourOptions[16]:
         providedValue.setType('dark');
+        document.body.style.setProperty('background-color', 'var(--type-dark)');
         break;
       case colourOptions[17]:
         providedValue.setType('steel');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-steel)'
+        );
         break;
       case colourOptions[18]:
         providedValue.setType('fairy');
+        document.body.style.setProperty(
+          'background-color',
+          'var(--type-fairy)'
+        );
         break;
       default:
         break;

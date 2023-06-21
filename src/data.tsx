@@ -43,6 +43,7 @@ export interface Pokemon {
   spAtk?: number;
   speed?: number;
   front_sprite: string;
+  front_shiny: string;
   typePrimary: string;
   typeSecondary?: string;
   flavorText?: string;
@@ -63,5 +64,6 @@ export const pkmnMaxstats: Pokemon = {
   spAtk: 194,
   speed: 180,
   front_sprite: 'null',
+  front_shiny: 'null',
   typePrimary: 'null',
 };

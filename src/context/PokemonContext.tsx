@@ -31,6 +31,7 @@ export const generatePokemon = async (
     atk: pokemonData.stats[1].base_stat,
     def: pokemonData.stats[2].base_stat,
     front_sprite: pokemonData.sprites.front_default,
+    front_shiny: pokemonData.sprites.front_shiny,
     typePrimary: pokemonData.types[0].type.name,
   };
 
