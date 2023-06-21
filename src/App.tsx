@@ -10,6 +10,7 @@ import {
   generatePokemon,
   randomPokemon500,
 } from './context/PokemonContext';
+import { DarkModeContext } from './context/DarkModeContext';
 
 function App() {
   // Corresponds to the current filterbox type filters
@@ -27,6 +28,15 @@ function App() {
   const [snackOpen, setSnackOpen] = useState(false);
   // Snackbar variant
   const [variant, setVariant] = useState('');
+
+  //The state to track whether dark mode is active
+  const [isDarkMode, setDarkMode] = React.useState(false);
+
+  // The provider value for my apps dark mode
+  const darkModeProvider = {
+    isDarkMode,
+    setDarkMode,
+  };
 
   // Checks the unqiuness of the passed id, based on if its a name or number
   const isUnique = (id: number | string): boolean => {
@@ -107,11 +117,13 @@ function App() {
   return (
     <>
       <TypeContext.Provider value={providerValue}>
-        <MainHeader />
-        <PokemonContext.Provider value={pkmnProvider}>
-          <FilterBox />
-          <CardDisplay />
-        </PokemonContext.Provider>
+        <DarkModeContext.Provider value={darkModeProvider}>
+          <MainHeader />
+          <PokemonContext.Provider value={pkmnProvider}>
+            <FilterBox />
+            <CardDisplay />
+          </PokemonContext.Provider>
+        </DarkModeContext.Provider>
       </TypeContext.Provider>
     </>
   );

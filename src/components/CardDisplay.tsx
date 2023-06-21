@@ -6,6 +6,7 @@ import { TypeContext } from '../context/typeContext';
 import SnackBar from './SnackBar';
 import { PokemonContext } from '../context/PokemonContext';
 import React from 'react';
+import { DarkModeContext } from '../context/DarkModeContext';
 
 const CardDisplay = () => {
   // Corresponds to the Error snack bar
@@ -16,6 +17,8 @@ const CardDisplay = () => {
 
   // Pokemon array and all operations on array
   const pokemonProvided = useContext(PokemonContext);
+
+
 
   // Evaluates whether currentPkmn type matches drop down selected type
   const typeDisplay = (

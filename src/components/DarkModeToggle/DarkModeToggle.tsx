@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { DarkModeContext } from '../../context/DarkModeContext';
 
 const DarkModeToggle = () => {
-  const [isDarkMode, setDarkMode] = React.useState(false);
+  //const [isDarkMode, setDarkMode] = React.useState(false);
 
   const toggleDarkMode = (checked: boolean) => {
     setDarkMode(checked);
   };
+
+  const { isDarkMode, setDarkMode } = useContext(DarkModeContext);
 
   useEffect(() => {
     if (isDarkMode) {

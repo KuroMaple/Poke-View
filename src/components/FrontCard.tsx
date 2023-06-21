@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Pokemon, pkmnMaxstats } from '../data';
 import CardStat from './CardStat';
 import Types from './Types';
 import { motion } from 'framer-motion';
+import { DarkModeContext } from '../context/DarkModeContext';
 
 interface Props {
   pokemon: Pokemon;
 }
 
 const FrontCard: React.FC<Props> = ({ pokemon }) => {
+  // Dark Mode tracker
+  const { isDarkMode, setDarkMode } = useContext(DarkModeContext);
+
   const capitalizeName = (name: string) => {
     return name.charAt(0).toUpperCase() + name.slice(1);
   };
@@ -42,7 +46,11 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
           />
         </div>
         <div className="card__img">
-          <img src={pokemon?.front_sprite} />
+          {isDarkMode ? (
+            <img src={pokemon?.front_shiny} />
+          ) : (
+            <img src={pokemon?.front_sprite} />
+          )}
         </div>
         <div className="card__stats">
           <CardStat
