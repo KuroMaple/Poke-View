@@ -15,6 +15,8 @@ interface Props {
   handleAddCardByName: (name: string) => void;
   variant: string;
   setVariant: React.Dispatch<React.SetStateAction<string>>;
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const generatePokemon = async (

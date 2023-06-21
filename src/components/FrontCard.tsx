@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Pokemon, pkmnMaxstats } from '../data';
 import CardStat from './CardStat';
 import Types from './Types';
 import { motion } from 'framer-motion';
 import { DarkModeContext } from '../context/DarkModeContext';
+import Modal from './Modal/Modal';
 
 interface Props {
   pokemon: Pokemon;
@@ -33,7 +34,11 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
   };
 
   return (
-    <motion.div variants={FlipVariant} whileHover={{ scale: 1.1 }}>
+    <motion.div
+      variants={FlipVariant}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    >
       <div className="card">
         <div className="card__header">
           <div className="card__id">

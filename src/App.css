@@ -466,3 +466,32 @@ body.darkMode{
     padding-left: 0.25rem;
     color: var(--text-color);
   }
+
+  .backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: #000000e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal {
+    width: clamp(50%, 10rem, 90%);
+    height: min(85%, 500rem);
+    margin: auto;
+    padding: 0 2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+  }
+  .orange-gradient {
+    background: linear-gradient(to right, #FFA500, #FF4500);
+  }

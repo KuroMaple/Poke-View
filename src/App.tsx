@@ -29,6 +29,9 @@ function App() {
   // Snackbar variant
   const [variant, setVariant] = useState('');
 
+  // Pkmn card focused view Modal state
+  const [modalOpen, setModalOpen] = useState(false);
+
   //The state to track whether dark mode is active
   const [isDarkMode, setDarkMode] = React.useState(false);
 
@@ -111,6 +114,8 @@ function App() {
     handleAddCardByName,
     variant,
     setVariant,
+    modalOpen,
+    setModalOpen,
   };
 
   return (
