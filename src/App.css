@@ -1,74 +1,103 @@
 @import url(//db.onlinewebfonts.com/c/f4d1593471d222ddebd973210265762a?family=Pokemon);
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=VT323&display=swap');
 
-:root {
-    --header-main: #ffcb05;
-    --header-accent: #2a75bb;
-    --background: #e5f1ed;
-    --text-color: #000000;
-    --icon-color: grey;
-    --search-list: white;
-    --box-shadow: #ddd;
-    --card-text-border: #84acfa;
-
-    /* Normal */
-    --type-normal: #A8A878;
-  
-    /* Fire */
-    --type-fire: #F08030;
-    
-    /* Water */
-    --type-water: #6890F0;
-    
-    /* Electric */
-    --type-electric: #F8D030;
-    
-    /* Grass */
-    --type-grass: #78C850;
-    
-    /* Ice */
-    --type-ice: #98D8D8;
-    
-    /* Fighting */
-    --type-fighting: #C03028;
-    
-    /* Poison */
-    --type-poison: #A040A0;
-    
-    /* Ground */
-    --type-ground: #E0C068;
-    
-    /* Flying */
-    --type-flying: #A890F0;
-    
-    /* Psychic */
-    --type-psychic: #F85888;
-    
-    /* Bug */
-    --type-bug: #A8B820;
-    
-    /* Rock */
-    --type-rock: #B8A038;
-    
-    /* Ghost */
-    --type-ghost: #705898;
-    
-    /* Dragon */
-    --type-dragon: #7038F8;
-    
-    /* Dark */
-    --type-dark: #705848;
-    
-    /* Steel */
-    --type-steel: #B8B8D0;
-    
-    /* Fairy */
-    --type-fairy: #EE99AC;
-
-}
 
 body{
+  --header-main: #ffcb05;
+  --header-accent: #2a75bb;
+  --background: #e5f1ed;
+  --text-color: #000000;
+  --icon-color: grey;
+  --search-list: white;
+  --box-shadow: #ddd;
+  --card-text-border: #84acfa;
+  --card-checkered-light: #c6fdbf;
+  --card-checkered-dark: #b9eeb3;
+
+  /* Normal */
+  --type-normal: #A8A878;
+  /* Fire */
+  --type-fire: #F08030;
+  /* Water */
+  --type-water: #6890F0;
+  /* Electric */
+  --type-electric: #F8D030;
+  /* Grass */
+  --type-grass: #78C850;
+  /* Ice */
+  --type-ice: #98D8D8;
+  /* Fighting */
+  --type-fighting: #C03028;
+  /* Poison */
+  --type-poison: #A040A0;
+  /* Ground */
+  --type-ground: #E0C068;
+  /* Flying */
+  --type-flying: #A890F0;
+  /* Psychic */
+  --type-psychic: #F85888;
+  /* Bug */
+  --type-bug: #A8B820;
+  /* Rock */
+  --type-rock: #B8A038;
+  /* Ghost */
+  --type-ghost: #705898;
+  /* Dragon */
+  --type-dragon: #7038F8;
+  /* Dark */
+  --type-dark: #705848;
+  /* Steel */
+  --type-steel: #B8B8D0;
+  /* Fairy */
+  --type-fairy: #EE99AC;
   background-color: var(--background);
+}
+
+body.darkMode{
+  --header-main: white;
+  --header-accent: #2a75bb;
+  --background: #053a15;
+  --text-color: white;
+  --card-text-border: #84acfa;
+  --card-checkered-light: #2ea043;
+  --card-checkered-dark: #228636;
+
+  --type-normal: #053a15;
+  /* Fire */
+  --type-fire: #053a15;
+  /* Water */
+  --type-water: #053a15;
+  /* Electric */
+  --type-electric: #053a15;
+  /* Grass */
+  --type-grass: #053a15;
+  /* Ice */
+  --type-ice: #053a15;
+  /* Fighting */
+  --type-fighting: #053a15;
+  /* Poison */
+  --type-poison: #053a15;
+  /* Ground */
+  --type-ground: #053a15;
+  /* Flying */
+  --type-flying: #053a15;
+  /* Psychic */
+  --type-psychic: #053a15;
+  /* Bug */
+  --type-bug: #053a15;
+  /* Rock */
+  --type-rock: #053a15;
+  /* Ghost */
+  --type-ghost: #053a15;
+  /* Dragon */
+  --type-dragon: #053a15;
+  /* Dark */
+  --type-dark: #053a15;
+  /* Steel */
+  --type-steel: #053a15;
+  /* Fairy */
+  --type-fairy: #053a15;
+
 }
 
 
@@ -99,26 +128,24 @@ body{
 }
 
 .main-header__button{
-    border: none;
-    background: none;
-    height: min-content;
+  border: none;
+  background: none;
+  height: min-content;
 }
 
 .filter-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 2rem;
 }
 
 .filter-box__dropdown {
-    font-family: Arial, Helvetica, sans-serif;
-    z-index: 10;
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 10;
 }
-
-
 
 .filter-box__input-box {
   position: relative;
@@ -145,8 +172,8 @@ body{
 
 .filter-box__input-box__input:hover,
 .filter-box__input-box__input:focus {
-    border-color: var(--header-accent);
-    outline: none;
+  border-color: var(--header-accent);
+  outline: none;
 }
 
 .filter-box__search-container{
@@ -235,8 +262,8 @@ body{
     background-position: 0px 0px, 10px 10px;
     background-size: 20px 20px;
     background-image: 
-    linear-gradient(45deg, #b9eeb3 25%, transparent 25%, transparent 75%, #b9eeb3 75%, #b9eeb3 100%),
-    linear-gradient(45deg, #b9eeb3 25%, #c6fdbf 25%, #c6fdbf 75%, #b9eeb3 75%, #b9eeb3 100%);
+    linear-gradient(45deg, var(--card-checkered-dark) 25%, transparent 25%, transparent 75%, var(--card-checkered-dark) 75%, var(--card-checkered-dark) 100%),
+    linear-gradient(45deg, var(--card-checkered-dark) 25%, var(--card-checkered-light) 25%, var(--card-checkered-light) 75%, var(--card-checkered-dark) 75%, var(--card-checkered-dark) 100%);
     padding-left: 2%;
     padding-right: 2%;
     border: 4px solid #ffe266;
@@ -429,6 +456,7 @@ body{
     align-items: center;
     height: 1rem;
     justify-content: space-between;
+    color: var(--text-color);
   }
 
   .card__flavor-text{
@@ -436,4 +464,5 @@ body{
     background-color: var(--background);
     border-radius: 1rem;
     padding-left: 0.25rem;
+    color: var(--text-color);
   }
