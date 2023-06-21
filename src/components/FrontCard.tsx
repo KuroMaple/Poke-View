@@ -33,7 +33,7 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
   };
 
   return (
-    <motion.div variants={FlipVariant}>
+    <motion.div variants={FlipVariant} whileHover={{ scale: 1.1 }}>
       <div className="card">
         <div className="card__header">
           <div className="card__id">
@@ -45,13 +45,18 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
             typeSecondary={pokemon?.typeSecondary ?? ''}
           />
         </div>
-        <div className="card__img">
-          {isDarkMode ? (
-            <img src={pokemon?.front_shiny} />
-          ) : (
-            <img src={pokemon?.front_sprite} />
-          )}
+        <div className="outerBorderTwo">
+          <div className="outerBorderOne">
+            <div className="card__img-container">
+              {isDarkMode ? (
+                <img src={pokemon?.front_shiny} className="card__img" />
+              ) : (
+                <img src={pokemon?.front_sprite} className="card__img" />
+              )}
+            </div>
+          </div>
         </div>
+
         <div className="card__stats">
           <CardStat
             statName="hp"
