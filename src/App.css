@@ -13,7 +13,8 @@ body{
   --card-text-border: #84acfa;
   --card-checkered-light: #c6fdbf;
   --card-checkered-dark: #b9eeb3;
-
+  --search-box: white;
+  --placeholder-color: gray;
   /* Normal */
   --type-normal: #A8A878;
   /* Fire */
@@ -61,43 +62,11 @@ body.darkMode{
   --card-text-border: #84acfa;
   --card-checkered-light: #2ea043;
   --card-checkered-dark: #228636;
-
-  --type-normal: #053a15;
-  /* Fire */
-  --type-fire: #053a15;
-  /* Water */
-  --type-water: #053a15;
-  /* Electric */
-  --type-electric: #053a15;
-  /* Grass */
-  --type-grass: #053a15;
-  /* Ice */
-  --type-ice: #053a15;
-  /* Fighting */
-  --type-fighting: #053a15;
-  /* Poison */
-  --type-poison: #053a15;
-  /* Ground */
-  --type-ground: #053a15;
-  /* Flying */
-  --type-flying: #053a15;
-  /* Psychic */
-  --type-psychic: #053a15;
-  /* Bug */
-  --type-bug: #053a15;
-  /* Rock */
-  --type-rock: #053a15;
-  /* Ghost */
-  --type-ghost: #053a15;
-  /* Dragon */
-  --type-dragon: #053a15;
-  /* Dark */
-  --type-dark: #053a15;
-  /* Steel */
-  --type-steel: #053a15;
-  /* Fairy */
-  --type-fairy: #053a15;
-
+  --search-box: #228636;
+  --icon-color: white;
+  --search-list: #2ea043;
+  --box-shadow: #00000;
+  --placeholder-color: #e8e0e0;
 }
 
 
@@ -147,6 +116,31 @@ body.darkMode{
   z-index: 10;
 }
 
+/* Styling React Select components according to their docs */
+
+.react-select-container{
+  
+}
+
+.react-select__control{
+  
+}
+.react-select__value-container{
+  background-color: var(--search-box);
+}
+.react-select__indicators{
+  background-color: var(--search-box);
+}
+
+.react-select__menu{
+  
+}
+
+.react-select__menu-list{
+  background-color: var(--search-list);
+}
+
+
 .filter-box__input-box {
   position: relative;
   display: flex;
@@ -168,6 +162,11 @@ body.darkMode{
     font-size: 16px;
     width: 25rem;
     height: 1.5rem;
+    background-color: var(--search-box);
+    color: var(--text-color);
+}
+::placeholder{
+  color: var(--placeholder-color);
 }
 
 .filter-box__input-box__input:hover,
@@ -198,11 +197,12 @@ body.darkMode{
   min-height: 2rem;
   align-items: center;
   padding-left: 1rem;
+  color: var(--text-color);
 }
 
 .filter-box__results-single:hover {
   cursor: pointer;
-  background-color: var(--icon-color);
+  background-color: var(--card-checkered-dark);
 }
 
 
@@ -379,31 +379,24 @@ body.darkMode{
 .fire {
     background-color: var(--type-fire);
   }
-  
   .electric {
     background-color: var(--type-electric);
   }
-  
   .grass {
     background-color: var(--type-grass);
   }
-  
   .ice {
     background-color: var(--type-ice);
   }
-  
   .fighting {
     background-color: var(--type-fighting);
   }
-  
   .poison {
     background-color: var(--type-poison);
-  }
-  
+  } 
   .ground {
     background-color: var(--type-ground);
   }
-  
   .flying {
     background-color: var(--type-flying);
   }

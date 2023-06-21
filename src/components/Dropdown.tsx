@@ -243,6 +243,8 @@ const Dropdown = () => {
         styles={colourStyles}
         value={colourOptions[typeToColour(providedValue.type)]}
         onChange={(e) => updateType(e)}
+        className="react-select-container"
+        classNamePrefix="react-select"
       />
     </div>
   );
