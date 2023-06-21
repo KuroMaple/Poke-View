@@ -18,8 +18,6 @@ const CardDisplay = () => {
   // Pokemon array and all operations on array
   const pokemonProvided = useContext(PokemonContext);
 
-
-
   // Evaluates whether currentPkmn type matches drop down selected type
   const typeDisplay = (
     currentPrimaryType: string,
@@ -42,7 +40,6 @@ const CardDisplay = () => {
           className="card-display__button"
           onClick={() => {
             pokemonProvided.handleAddRandomCard();
-            console.log(pokemonProvided.pokemonCards);
           }}
         >
           Load More Pok&#233;mon

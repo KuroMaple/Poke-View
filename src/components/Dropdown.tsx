@@ -4,6 +4,7 @@ import Select, { MultiValue, SingleValue, StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
 import { ColourOption, colourOptions } from '../data';
 import { PokemonType, TypeContext } from '../context/typeContext';
+import { DarkModeContext } from '../context/DarkModeContext';
 
 const dot = (color = 'transparent') => ({
   alignItems: 'center',
@@ -20,8 +21,51 @@ const dot = (color = 'transparent') => ({
   },
 });
 
-const colourStyles: StylesConfig<ColourOption> = {
-  control: (styles) => ({ ...styles, backgroundColor: 'white' }),
+const colourStylesLight: StylesConfig<ColourOption> = {
+  control: (styles) => ({
+    ...styles,
+    backgroundColor: 'white',
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    const color = chroma(data.color);
+    return {
+      ...styles,
+      backgroundColor: isDisabled
+        ? undefined
+        : isSelected
+        ? data.color
+        : isFocused
+        ? color.alpha(0.1).css()
+        : undefined,
+      color: isDisabled
+        ? '#ccc'
+        : isSelected
+        ? chroma.contrast(color, 'white') > 2
+          ? 'white'
+          : 'black'
+        : data.color,
+      cursor: isDisabled ? 'not-allowed' : 'default',
+
+      ':active': {
+        ...styles[':active'],
+        backgroundColor: !isDisabled
+          ? isSelected
+            ? data.color
+            : color.alpha(0.3).css()
+          : undefined,
+      },
+    };
+  },
+  input: (styles) => ({ ...styles, ...dot() }),
+  placeholder: (styles) => ({ ...styles, ...dot('#ccc') }),
+  singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
+};
+
+const colourStylesDark: StylesConfig<ColourOption> = {
+  control: (styles) => ({
+    ...styles,
+    backgroundColor: '#228636',
+  }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     const color = chroma(data.color);
     return {
@@ -60,6 +104,8 @@ const colourStyles: StylesConfig<ColourOption> = {
 const Dropdown = () => {
   const providedValue = useContext(TypeContext); // Contains the current type chosen to be filtered by
 
+  // Dark mode context
+  const { isDarkMode, setDarkMode } = useContext(DarkModeContext);
   // maps the filter type to a Colour option
   const typeToColour = (type: PokemonType) => {
     switch (type) {
@@ -237,15 +283,27 @@ const Dropdown = () => {
 
   return (
     <div className="filter-box__dropdown">
-      <Select
-        options={colourOptions}
-        placeholder="Filter by Type"
-        styles={colourStyles}
-        value={colourOptions[typeToColour(providedValue.type)]}
-        onChange={(e) => updateType(e)}
-        className="react-select-container"
-        classNamePrefix="react-select"
-      />
+      {isDarkMode ? (
+        <Select
+          options={colourOptions}
+          placeholder="Filter by Type"
+          styles={colourStylesDark}
+          value={colourOptions[typeToColour(providedValue.type)]}
+          onChange={(e) => updateType(e)}
+          className="react-select-container"
+          classNamePrefix="react-select"
+        />
+      ) : (
+        <Select
+          options={colourOptions}
+          placeholder="Filter by Type"
+          styles={colourStylesLight}
+          value={colourOptions[typeToColour(providedValue.type)]}
+          onChange={(e) => updateType(e)}
+          className="react-select-container"
+          classNamePrefix="react-select"
+        />
+      )}
     </div>
   );
 };
