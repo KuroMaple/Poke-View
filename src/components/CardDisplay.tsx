@@ -33,16 +33,10 @@ const CardDisplay = () => {
     }
   };
 
-  // modal info and setter
-  const { modalOpen, setModalOpen } = useContext(PokemonContext);
-
-  const closeModal = () => setModalOpen(false);
-  const openModal = () => setModalOpen(true);
-
-  const onClickCard = (pkmn: any) => {
-    modalOpen ? closeModal() : openModal();
-    setFocusedPokemon(pkmn);
-  };
+  // const onClickCard = (pkmn: any) => {
+  //   modalOpen ? closeModal() : openModal();
+  //   setFocusedPokemon(pkmn);
+  // };
 
   return (
     <div className="card-display">
@@ -63,45 +57,17 @@ const CardDisplay = () => {
         variant={pokemonProvided.variant}
       />
 
-      <motion.div
-        className="card-display__card-holder"
-        onClick={(e) => {
-          modalOpen ? closeModal() : openModal();
-          console.log('on click in card component');
-          //console.log(pkmn);
-        }}
-      >
+      <motion.div className="card-display__card-holder">
         {pokemonProvided.pokemonCards
           .filter((curPkmn) =>
             typeDisplay(curPkmn.typePrimary, curPkmn.typeSecondary)
           )
           .map((curPkmn) => (
-            <div>
-              <AnimatePresence
-                // Disable any initial animations on children that
-                // are present when the component is first rendered
-                initial={false}
-                // Only render one component at a time.
-                // The exiting component will finish its exit
-                // animation before entering component is rendered
-                mode="wait"
-                // Fires when all exiting nodes have completed animating out
-                onExitComplete={() => null}
-              >
-                {modalOpen && curPkmn && (
-                  <Modal
-                    modalOpen={modalOpen}
-                    handleClose={closeModal}
-                    pkmn={curPkmn}
-                  />
-                )}
-              </AnimatePresence>
-              <Card
-                key={curPkmn.id}
-                pkmn={curPkmn}
-                onClick={() => onClickCard(curPkmn)}
-              />
-            </div>
+            <Card
+              key={curPkmn.id}
+              pkmn={curPkmn}
+              //onClick={() => onClickCard(curPkmn)}
+            />
           ))}
       </motion.div>
     </div>

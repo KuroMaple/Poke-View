@@ -9,7 +9,7 @@ import Modal from './Modal/Modal';
 
 interface Props {
   pkmn: Pokemon;
-  onClick: React.Dispatch<React.SetStateAction<null>>;
+  //onClick: (pkmn: any) => void;
 }
 
 const Card: React.FC<Props> = ({ pkmn }) => {
@@ -33,13 +33,38 @@ const Card: React.FC<Props> = ({ pkmn }) => {
     },
   };
 
+  // modal info and setter
+  const { modalOpen, setModalOpen } = useContext(PokemonContext);
+
+  const closeModal = () => setModalOpen(false);
+  const openModal = () => setModalOpen(true);
+
   return (
     <motion.div
       initial="initial"
       animate="animate"
       exit="exit"
-      onClick={onClick}
+      onClick={(e) => {
+        modalOpen ? closeModal() : openModal();
+        console.log('on click in card component');
+        //console.log(pkmn);
+      }}
     >
+      <AnimatePresence
+        // Disable any initial animations on children that
+        // are present when the component is first rendered
+        initial={false}
+        // Only render one component at a time.
+        // The exiting component will finish its exit
+        // animation before entering component is rendered
+        mode="wait"
+        // Fires when all exiting nodes have completed animating out
+        onExitComplete={() => null}
+      >
+        {modalOpen && pkmn && (
+          <Modal modalOpen={modalOpen} handleClose={closeModal} pkmn={pkmn} />
+        )}
+      </AnimatePresence>
       {isFlipped ? (
         <motion.div
           className="card__back"
