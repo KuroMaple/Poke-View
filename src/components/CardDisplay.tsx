@@ -51,8 +51,6 @@ const CardDisplay = () => {
     },
   };
 
-  const controls = stop();
-
   return (
     <div className="card-display">
       <div className="card-display__button-holder">
@@ -85,6 +83,7 @@ const CardDisplay = () => {
             />
           ))}
       </motion.div>
+
     </div>
   );
 };
