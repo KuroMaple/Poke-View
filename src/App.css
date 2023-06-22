@@ -492,6 +492,38 @@ body.darkMode{
     z-index: 1000;
     position: fixed;
   }
-  .orange-gradient {
-    background: linear-gradient(135deg,#c0b262, #fcf9c9 80%, #c0b262, #c0b262, #fcf9c9 80%);
+ 
+
+  .focused-view {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  
+  .focused-view__header {
+    display: flex;
+    justify-content: space-between;
+  } 
+
+  .focused-view__header-name{
+    font-size:xx-large;
+    color: var(--text-color);
+  }
+
+  .focused-view__header-types{
+    font-size: larger;
+  }
+
+  .focused-view__stats{
+    display: flex;
+    flex-direction: column;
+  }
+  .focused-view__stats-single {
+    margin: 0.3rem;
+    font-size: larger;
+  }
+
+  .focused-view__flavor-text {
+    color: var(--text-color);
   }

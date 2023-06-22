@@ -9,17 +9,12 @@ import Modal from './Modal/Modal';
 
 interface Props {
   pkmn: Pokemon;
+  onClick: React.Dispatch<React.SetStateAction<null>>;
 }
 
 const Card: React.FC<Props> = ({ pkmn }) => {
-  // State that holds all the pokemon Data information
-  const [pokemon, setPokemon] = useState<Pokemon>(pkmnMaxstats);
   // Determines cards Flip status
   const [isFlipped, setIsFlipped] = useState(true);
-
-  useEffect(() => {
-    setPokemon(pkmn);
-  }, [pokemon]);
 
   const flipper = () => {
     setIsFlipped(false);
@@ -37,42 +32,14 @@ const Card: React.FC<Props> = ({ pkmn }) => {
       transition: { duration: 0.5 },
     },
   };
-  // modal info and setter
-  const { modalOpen, setModalOpen } = useContext(PokemonContext);
-
-  const closeModal = () => setModalOpen(false);
-  const openModal = () => setModalOpen(true);
 
   return (
     <motion.div
       initial="initial"
       animate="animate"
       exit="exit"
-      onClick={(e) => {
-        modalOpen ? closeModal() : openModal();
-        console.log('on click in card component');
-        console.log(pokemon);
-      }}
+      onClick={onClick}
     >
-      <AnimatePresence
-        // Disable any initial animations on children that
-        // are present when the component is first rendered
-        initial={false}
-        // Only render one component at a time.
-        // The exiting component will finish its exit
-        // animation before entering component is rendered
-        mode="wait"
-        // Fires when all exiting nodes have completed animating out
-        onExitComplete={() => null}
-      >
-        {modalOpen && (
-          <Modal
-            modalOpen={modalOpen}
-            handleClose={closeModal}
-            pkmn={pokemon}
-          />
-        )}
-      </AnimatePresence>
       {isFlipped ? (
         <motion.div
           className="card__back"
@@ -81,7 +48,7 @@ const Card: React.FC<Props> = ({ pkmn }) => {
           animate="animate"
         ></motion.div>
       ) : (
-        <FrontCard pokemon={pokemon} />
+        <FrontCard pokemon={pkmn} />
       )}
     </motion.div>
   );
