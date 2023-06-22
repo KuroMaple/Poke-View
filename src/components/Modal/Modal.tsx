@@ -2,13 +2,14 @@ import { motion } from 'framer-motion';
 import Backdrop from '../Backdrop/Backdrop';
 import React from 'react';
 import FocusedCard from '../FocusedCard/FocusedCard';
+import { Pokemon } from '../../data';
 
 interface Props {
   handleClose: () => void;
-  text: string;
   modalOpen: boolean;
+  pkmn: Pokemon;
 }
-const Modal: React.FC<Props> = ({ handleClose, text }) => {
+const Modal: React.FC<Props> = ({ handleClose, pkmn }) => {
   const flip = {
     hidden: {
       transform: 'scale(0) rotateY(-360deg)',
@@ -42,7 +43,7 @@ const Modal: React.FC<Props> = ({ handleClose, text }) => {
         animate="visible"
         exit="exit"
       >
-        <FocusedCard />
+        <FocusedCard pkmn={pkmn} />
       </motion.div>
     </Backdrop>
   );

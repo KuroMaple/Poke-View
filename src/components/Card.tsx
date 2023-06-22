@@ -19,7 +19,7 @@ const Card: React.FC<Props> = ({ pkmn }) => {
 
   useEffect(() => {
     setPokemon(pkmn);
-  }, []);
+  }, [pokemon]);
 
   const flipper = () => {
     setIsFlipped(false);
@@ -37,7 +37,7 @@ const Card: React.FC<Props> = ({ pkmn }) => {
       transition: { duration: 0.5 },
     },
   };
-  // Pokemon array and all operations on array
+  // modal info and setter
   const { modalOpen, setModalOpen } = useContext(PokemonContext);
 
   const closeModal = () => setModalOpen(false);
@@ -48,8 +48,10 @@ const Card: React.FC<Props> = ({ pkmn }) => {
       initial="initial"
       animate="animate"
       exit="exit"
-      onClick={() => {
+      onClick={(e) => {
         modalOpen ? closeModal() : openModal();
+        console.log('on click in card component');
+        console.log(pokemon);
       }}
     >
       <AnimatePresence
@@ -64,7 +66,11 @@ const Card: React.FC<Props> = ({ pkmn }) => {
         onExitComplete={() => null}
       >
         {modalOpen && (
-          <Modal modalOpen={modalOpen} handleClose={closeModal} text="hi" />
+          <Modal
+            modalOpen={modalOpen}
+            handleClose={closeModal}
+            pkmn={pokemon}
+          />
         )}
       </AnimatePresence>
       {isFlipped ? (

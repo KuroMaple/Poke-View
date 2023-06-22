@@ -493,5 +493,5 @@ body.darkMode{
     position: fixed;
   }
   .orange-gradient {
-    background: linear-gradient(to right, #FFA500, #FF4500);
+    background: linear-gradient(135deg,#c0b262, #fcf9c9 80%, #c0b262, #c0b262, #fcf9c9 80%);
   }
