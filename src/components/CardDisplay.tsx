@@ -10,9 +10,6 @@ import { DarkModeContext } from '../context/DarkModeContext';
 import Modal from './Modal/Modal';
 
 const CardDisplay = () => {
-  // Corresponds to the Error snack bar
-  // const [snackOpen, setSnackOpen] = useState(false);
-
   // Contains the selected type to filter by
   const providedValue = useContext(TypeContext);
 
@@ -34,9 +31,6 @@ const CardDisplay = () => {
     }
   };
 
-  const closeModal = () => pokemonProvided.setModalOpen(false);
-  const openModal = () => pokemonProvided.setModalOpen(true);
-
   return (
     <div className="card-display">
       <div className="card-display__button-holder">
@@ -56,33 +50,7 @@ const CardDisplay = () => {
         variant={pokemonProvided.variant}
       />
 
-      <motion.div
-        className="card-display__card-holder"
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        onClick={() => (pokemonProvided.modalOpen ? closeModal() : openModal())}
-      >
-        <AnimatePresence
-          // Disable any initial animations on children that
-          // are present when the component is first rendered
-          initial={false}
-          // Only render one component at a time.
-          // The exiting component will finish its exit
-          // animation before entering component is rendered
-          mode="wait"
-          // Fires when all exiting nodes have completed animating out
-          onExitComplete={() => null}
-        >
-          {pokemonProvided.modalOpen && (
-            <Modal
-              modalOpen={pokemonProvided.modalOpen}
-              handleClose={closeModal}
-              text="hi"
-            />
-          )}
-        </AnimatePresence>
-
+      <motion.div className="card-display__card-holder">
         {pokemonProvided.pokemonCards
           .filter((curPkmn) =>
             typeDisplay(curPkmn.typePrimary, curPkmn.typeSecondary)

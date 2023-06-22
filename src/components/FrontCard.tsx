@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import { Pokemon, pkmnMaxstats } from '../data';
 import CardStat from './CardStat';
 import Types from './Types';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { DarkModeContext } from '../context/DarkModeContext';
 import Modal from './Modal/Modal';
+import { PokemonContext } from '../context/PokemonContext';
 
 interface Props {
   pokemon: Pokemon;
@@ -13,6 +14,8 @@ interface Props {
 const FrontCard: React.FC<Props> = ({ pokemon }) => {
   // Dark Mode tracker
   const { isDarkMode, setDarkMode } = useContext(DarkModeContext);
+
+  const pokemonProvided = useContext(PokemonContext);
 
   const capitalizeName = (name: string) => {
     return name.charAt(0).toUpperCase() + name.slice(1);
@@ -26,6 +29,7 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
   const FlipVariant = {
     initial: {
       rotateY: 90,
+      transition: { duration: 0.25 },
     },
     animate: {
       rotateY: 0,
@@ -38,6 +42,8 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
       variants={FlipVariant}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
+      initial="initial"
+      animate="animate"
     >
       <div className="card">
         <div className="card__header">

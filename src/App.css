@@ -240,14 +240,13 @@ body.darkMode{
 
 
 .card-display__card-holder {
-    min-height: fit-content;
-    margin: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    
+  min-height: fit-content;
+  margin: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
 }
 
 .card, .card__back {
@@ -468,7 +467,7 @@ body.darkMode{
   }
 
   .backdrop {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
@@ -491,6 +490,7 @@ body.darkMode{
     flex-direction: column;
     align-items: center;
     z-index: 1000;
+    position: fixed;
   }
   .orange-gradient {
     background: linear-gradient(to right, #FFA500, #FF4500);

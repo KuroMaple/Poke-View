@@ -21,13 +21,12 @@ const DarkModeToggle = () => {
     <div className="main-header__button">
       <DarkModeSwitch
         style={{
-          width: '2rem',
           cursor: 'pointer',
-          height: '2rem',
         }}
+        sunColor="#d4af19"
         checked={isDarkMode}
         onChange={toggleDarkMode}
-        size={120}
+        size={30}
       />
     </div>
   );
