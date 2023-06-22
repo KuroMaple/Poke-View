@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import { useContext, useState } from 'react';
 import Card from './Card';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { TypeContext } from '../context/typeContext';
 import SnackBar from './SnackBar';
 import { PokemonContext } from '../context/PokemonContext';
@@ -37,6 +37,21 @@ const CardDisplay = () => {
   //   modalOpen ? closeModal() : openModal();
   //   setFocusedPokemon(pkmn);
   // };
+
+  const ContainerVariants = {
+    initial: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+    animate: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const controls = stop();
 
   return (
     <div className="card-display">

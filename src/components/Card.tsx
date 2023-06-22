@@ -20,16 +20,16 @@ const Card: React.FC<Props> = ({ pkmn }) => {
     setIsFlipped(false);
   };
 
-  const flipCard = setTimeout(flipper, 700);
+  const flipCard = setTimeout(flipper, 1500);
 
   const FlipVariant = {
     initial: {
       rotateY: 0,
-      transition: { duration: 0.25 },
+      transition: { duration: 1 },
     },
     animate: {
       rotateY: 90,
-      transition: { duration: 0.5 },
+      transition: { duration: 1 },
     },
   };
 
@@ -45,26 +45,17 @@ const Card: React.FC<Props> = ({ pkmn }) => {
       animate="animate"
       exit="exit"
       onClick={(e) => {
+        e.stopPropagation();
         modalOpen ? closeModal() : openModal();
         console.log('on click in card component');
-        //console.log(pkmn);
+        console.log(pkmn);
       }}
+      style={{ background: 'black' }}
     >
-      <AnimatePresence
-        // Disable any initial animations on children that
-        // are present when the component is first rendered
-        initial={false}
-        // Only render one component at a time.
-        // The exiting component will finish its exit
-        // animation before entering component is rendered
-        mode="wait"
-        // Fires when all exiting nodes have completed animating out
-        onExitComplete={() => null}
-      >
-        {modalOpen && pkmn && (
-          <Modal modalOpen={modalOpen} handleClose={closeModal} pkmn={pkmn} />
-        )}
-      </AnimatePresence>
+      {modalOpen && pkmn && (
+        <Modal modalOpen={modalOpen} handleClose={closeModal} pkmn={pkmn} />
+      )}
+
       {isFlipped ? (
         <motion.div
           className="card__back"

@@ -29,11 +29,11 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
   const FlipVariant = {
     initial: {
       rotateY: 90,
-      transition: { duration: 0.25 },
+      transition: { duration: 1 },
     },
     animate: {
       rotateY: 0,
-      transition: { duration: 0.25 },
+      transition: { duration: 1 },
     },
   };
 

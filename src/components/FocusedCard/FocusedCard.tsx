@@ -39,7 +39,7 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
         return '#EE8130';
         break;
       case 'water':
-        return '#6390F0';
+        return '#446CB3';
         break;
       case 'bug':
         return '#A6B91A';
