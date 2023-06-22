@@ -32,6 +32,12 @@ const CardStat: React.FC<Props> = ({ statName, statValue, maxStat }) => {
         return '#f08030'; // Green color
       case 'def':
         return '#f8d030'; // Blue color
+      case 'spatk':
+        return '#6890f0';
+      case 'spdef':
+        return '#78c850';
+      case 'speed':
+        return '#f85888';
       default:
         return '#1a90ff';
     }
