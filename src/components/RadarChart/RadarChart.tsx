@@ -28,16 +28,26 @@ const RadarChart: React.FC<Props> = ({ pkmn }) => {
       },
     ],
   };
+  /* _DeepPartialObject<CoreChartOptions<"radar"> 
+  & ElementChartOptions<"radar"> 
+  & PluginChartOptions<"radar"> 
+  & DatasetChartOptions<"radar"> 
+  & ScaleChartOptions<...> 
+  & LineControllerChartOptions*/
+  const options = {};
 
-  const options = {
-    responsive: false,
-  };
-
-  ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler);
+  ChartJS.register(
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend
+  );
 
   return (
     <div className="radar-chart">
-      <Radar data={data} options={options} />
+      <Radar data={data} />
     </div>
   );
 };

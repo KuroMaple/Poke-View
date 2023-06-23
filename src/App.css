@@ -540,14 +540,14 @@ body.darkMode{
     color: var(--text-color);
   }
 
-  .radar-chart{
+  /* .radar-chart{
     height: 100%;
     width: 100%;
   }
   .radar-chart__container {
     max-height: 30%;
     max-width: 30%;
-  }
+  } */
   .focused-view__main-info{
     display: flex;
     align-items: center;
@@ -594,8 +594,8 @@ body.darkMode{
     justify-content: center;
   }
   
-
-  @media only screen and (max-width: 1200px) {
+  /*1200 px is for laptop*/
+  @media only screen and (max-width: 600px) {
     .radar-chart__container {
       display: none;
     }
