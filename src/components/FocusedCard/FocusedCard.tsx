@@ -149,12 +149,16 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
         </div>
       </div>
       <div className="focused-view__main-info">
-        <div className="focused-view__img">
-          {isDarkMode ? (
-            <img src={pkmn?.animatedShinyFront} className="card__img" />
-          ) : (
-            <img src={pkmn?.animatedFront} className="card__img" />
-          )}
+        <div className="focused-view__img-outmoust-border">
+          <div className="focused-view__img-inner-border">
+            <div className="focused-view__img">
+              {isDarkMode ? (
+                <img src={pkmn?.animatedShinyFront} className="card__img" />
+              ) : (
+                <img src={pkmn?.animatedFront} className="card__img" />
+              )}
+            </div>
+          </div>
         </div>
         <div className="radar-chart__container">
           <RadarChart pkmn={pkmn} />
