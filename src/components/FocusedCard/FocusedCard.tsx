@@ -33,22 +33,22 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
   const getColor = (type: string) => {
     switch (type) {
       case 'grass':
-        return '#56AE56';
+        return '#458F45';
         break;
       case 'fire':
-        return '#EE8130';
+        return '#B44C18';
         break;
       case 'water':
         return '#446CB3';
         break;
       case 'bug':
-        return '#A6B91A';
+        return '#7B8824';
         break;
       case 'normal':
-        return '#A8A77A';
+        return '#8C8C6E';
         break;
       case 'poison':
-        return '#A33EA1';
+        return '#822E87';
         break;
       case 'electric':
         return '#b5a93f';
@@ -60,10 +60,10 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
         return '#D685AD';
         break;
       case 'fighting':
-        return '#C22E28';
+        return '#75140f';
         break;
       case 'psychic':
-        return '#F95587';
+        return '#D3385E';
         break;
       case 'rock':
         return '#7D7528';
@@ -72,19 +72,19 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
         return '#735797';
         break;
       case 'ice':
-        return '#96D9D6';
+        return '#7FA7A5';
         break;
       case 'dragon':
-        return '#6F35FC';
+        return '#5930B5';
         break;
       case 'steel':
-        return '#B7B7CE';
+        return '#8888A9';
         break;
       case 'flying':
-        return '#A98FF3';
+        return '#9279D6';
         break;
       case 'dark':
-        return '#705746';
+        return '#4D433B';
         break;
     }
   };

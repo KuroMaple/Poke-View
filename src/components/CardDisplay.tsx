@@ -83,7 +83,6 @@ const CardDisplay = () => {
             />
           ))}
       </motion.div>
-
     </div>
   );
 };

@@ -33,6 +33,7 @@ const pokeAPI = {
   },
 
   getSpecies: async (id: number | string) => {
+    if (id === 'tornadus-incarnate') id = 'tornadus'; // TO DO: REPLACE names with ids only to avoud similair bugs
     try {
       const speciesResponse = await fetch(
         'https://pokeapi.co/api/v2/pokemon-species/' + id
