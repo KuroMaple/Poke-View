@@ -148,13 +148,19 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
           />
         </div>
       </div>
-      <div className="focused-view__img">
-        {isDarkMode ? (
-          <img src={pkmn?.front_shiny} className="card__img" />
-        ) : (
-          <img src={pkmn?.front_sprite} className="card__img" />
-        )}
+      <div className="focused-view__main-info">
+        <div className="focused-view__img">
+          {isDarkMode ? (
+            <img src={pkmn?.animatedShinyFront} className="card__img" />
+          ) : (
+            <img src={pkmn?.animatedFront} className="card__img" />
+          )}
+        </div>
+        <div className="radar-chart__container">
+          <RadarChart pkmn={pkmn} />
+        </div>
       </div>
+
       <div className="focused-view__stats">
         <div className="focused-view__stats-single">
           <CardStat
@@ -203,7 +209,6 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
       <div className="focused-view__flavor-text">
         <p>{processText(pkmn.flavorText ?? '')}</p>
       </div>
-      <RadarChart pkmn={pkmn} />
     </div>
   );
 };

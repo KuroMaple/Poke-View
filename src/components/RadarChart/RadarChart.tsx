@@ -30,19 +30,7 @@ const RadarChart: React.FC<Props> = ({ pkmn }) => {
   };
 
   const options = {
-    responsive: true,
-    scale: {
-      r: {
-        angleLines: {
-          display: false,
-        },
-        min: 0,
-        max: 255,
-        ticks: {
-          callback: () => '',
-        },
-      },
-    },
+    responsive: false,
   };
 
   ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler);

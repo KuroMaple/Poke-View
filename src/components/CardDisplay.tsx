@@ -55,11 +55,7 @@ const CardDisplay = () => {
             typeDisplay(curPkmn.typePrimary, curPkmn.typeSecondary)
           )
           .map((curPkmn) => (
-            <Card
-              key={curPkmn.id}
-              pkmn={curPkmn}
-              //onClick={() => onClickCard(curPkmn)}
-            />
+            <Card key={curPkmn.id} pkmn={curPkmn} />
           ))}
       </motion.div>
     </div>

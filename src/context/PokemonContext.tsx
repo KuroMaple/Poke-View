@@ -20,6 +20,26 @@ interface Props {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const setAnimatedSprites = (pkmn: Pokemon) => {
+  pkmn.animatedFront =
+    'https://raw.githubusercontent.com/sashafirsov/pokeapi-sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/' +
+    pkmn.id +
+    '.gif';
+  pkmn.animatedBack =
+    'https://raw.githubusercontent.com/sashafirsov/pokeapi-sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/' +
+    pkmn.id +
+    '.gif';
+  pkmn.animatedShinyFront =
+    'https://github.com/sashafirsov/pokeapi-sprites/blob/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/' +
+    pkmn.id +
+    '.gif?raw=true';
+  pkmn.animatedShinyBack =
+    'https://github.com/sashafirsov/pokeapi-sprites/blob/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/' +
+    pkmn.id +
+    '.gif?raw=true';
+  return pkmn;
+};
+
 export const generatePokemon = async (
   id: number | string
 ): Promise<Pokemon> => {
@@ -27,7 +47,7 @@ export const generatePokemon = async (
   const pokemonData = await api.getPokemon(id); //API calls
   const speciesData = await api.getSpecies(id);
   // Process the fetched data
-  const pkmnData: Pokemon = {
+  let pkmnData: Pokemon = {
     name: pokemonData.name,
     id: pokemonData.id,
     hp: pokemonData.stats[0].base_stat,
@@ -54,6 +74,8 @@ export const generatePokemon = async (
     speciesData.flavor_text_entries[counter].language.name !== 'en' //control language from here
   );
   pkmnData.flavorText = flavorText;
+
+  pkmnData = setAnimatedSprites(pkmnData);
   return pkmnData;
 };
 
