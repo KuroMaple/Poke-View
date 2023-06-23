@@ -1,6 +1,6 @@
 {
   "name": "poke-view",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
   "homepage": "https://jana-hassanhashmi.github.io/Poke-View/",
   "type": "module",
