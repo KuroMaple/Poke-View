@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { useContext, useEffect, useState } from 'react';
-import { Pokemon, pkmnMaxstats } from '../data';
-import pokeAPI from '../poke-api';
+import React, { useState } from 'react';
+import { Pokemon } from '../data';
 import FrontCard from './FrontCard';
-import { AnimatePresence, motion } from 'framer-motion';
-import { PokemonContext } from '../context/PokemonContext';
+import { motion } from 'framer-motion';
 import Modal from './Modal/Modal';
 
 interface Props {
@@ -28,7 +26,8 @@ const Card: React.FC<Props> = ({ pkmn }) => {
     setIsFlipped(false);
   };
 
-  const flipCard = setTimeout(flipper, 1500);
+  // Timer to run flipping animation
+  setTimeout(flipper, 1500);
 
   const FlipVariant = {
     initial: {

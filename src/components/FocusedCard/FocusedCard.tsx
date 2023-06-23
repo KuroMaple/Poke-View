@@ -10,7 +10,7 @@ interface Props {
 
 const FocusedCard: React.FC<Props> = ({ pkmn }) => {
   // Dark Mode tracker
-  const { isDarkMode, setDarkMode } = useContext(DarkModeContext);
+  const { isDarkMode } = useContext(DarkModeContext);
 
   const [pokemon, setPokemon] = useState(pkmn);
 

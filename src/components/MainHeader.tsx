@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+
 import DarkModeToggle from './DarkModeToggle/DarkModeToggle';
 const MainHeader = () => {
   return (

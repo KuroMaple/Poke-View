@@ -12,7 +12,7 @@ export const SearchResult: React.FC<Props> = ({ result, setResults }) => {
 
   return (
     <div
-      onClick={(e) => {
+      onClick={() => {
         pokemonProvided.handleAddCardByName(result);
         setResults([]);
       }}

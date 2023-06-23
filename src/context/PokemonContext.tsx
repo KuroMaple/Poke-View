@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
 import { createContext } from 'react';
 import { Pokemon, maxPokemonCount } from '../data';
@@ -61,4 +62,18 @@ export const randomPokemon500 = () => {
   return Math.floor(Math.random() * maxPokemonCount) + 1;
 };
 
-export const PokemonContext = createContext<Props>();
+// Default value cuz anopiler being annoying
+const defaultProps: Props = {
+  pokemonCards: [],
+  setPokemonCards: () => {},
+  handleAddRandomCard: () => {},
+  snackOpen: false,
+  setSnackOpen: () => {},
+  handleAddCardByName: () => {},
+  variant: '',
+  setVariant: () => {},
+  modalOpen: false,
+  setModalOpen: () => {},
+};
+
+export const PokemonContext = createContext<Props>(defaultProps);

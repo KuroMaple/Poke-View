@@ -1,8 +1,6 @@
 // This file exports information to style the Dropdown component
 // and the Pokemon data models
 
-import chroma from 'chroma-js';
-
 export interface ColourOption {
   value: string;
   label: string;

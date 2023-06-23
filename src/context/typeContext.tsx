@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
 import { createContext } from 'react';
 
@@ -27,4 +28,9 @@ interface Props {
   setType: React.Dispatch<React.SetStateAction<PokemonType>>;
 }
 
-export const TypeContext = createContext<Props>(); // TODO: add default value here
+const defaultValue: Props = {
+  type: 'normal',
+  setType: () => {},
+};
+
+export const TypeContext = createContext<Props>(defaultValue); // TODO: add default value here

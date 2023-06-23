@@ -1,13 +1,12 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-key */
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Card from './Card';
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { TypeContext } from '../context/typeContext';
 import SnackBar from './SnackBar';
 import { PokemonContext } from '../context/PokemonContext';
-import React from 'react';
-import { DarkModeContext } from '../context/DarkModeContext';
-import Modal from './Modal/Modal';
+// import React from 'react';
 
 const CardDisplay = () => {
   // Contains the selected type to filter by
@@ -15,8 +14,6 @@ const CardDisplay = () => {
 
   // Pokemon array and all operations on array
   const pokemonProvided = useContext(PokemonContext);
-
-  const [focusedPokemon, setFocusedPokemon] = useState(null);
 
   // Evaluates whether currentPkmn type matches drop down selected type
   const typeDisplay = (
@@ -31,24 +28,6 @@ const CardDisplay = () => {
         currentSecondaryType === providedValue.type
       );
     }
-  };
-
-  // const onClickCard = (pkmn: any) => {
-  //   modalOpen ? closeModal() : openModal();
-  //   setFocusedPokemon(pkmn);
-  // };
-
-  const ContainerVariants = {
-    initial: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-    animate: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
   };
 
   return (

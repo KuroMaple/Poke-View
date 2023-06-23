@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+import { useContext, useEffect } from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { DarkModeContext } from '../../context/DarkModeContext';
 

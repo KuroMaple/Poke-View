@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+import { useState } from 'react';
 import Dropdown from './Dropdown';
 import SearchBox from './SearchBox';
-import { SearchResult } from './SearchResults';
 import { SearchResultsList } from './SearchResultsList';
 import { PokemonNameObject } from '../data';
 

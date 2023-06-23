@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Snackbar, Alert } from '@mui/material';
 import React from 'react';
 
 interface Props {
   snackOpen: boolean;
-  setSnackOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSnackOpen: React.Dispatch<React.SetStateAction<boolean>>; // TODO FIX after deployment
   variant: string;
 }
 
@@ -15,10 +16,10 @@ const SnackBar: React.FC<Props> = ({ snackOpen, setSnackOpen, variant }) => {
     if (reason === 'clickaway') {
       return;
     }
+    console.log(event);
 
     setSnackOpen(false);
   };
-
   const generateVariant = () => {
     switch (variant) {
       case 'MaxPkmn':
@@ -37,9 +38,9 @@ const SnackBar: React.FC<Props> = ({ snackOpen, setSnackOpen, variant }) => {
         return (
           <Alert
             onClose={handleClose}
-            severity="error"
             sx={{ width: '100%' }}
             variant="filled"
+            severity="error"
           >
             ERROR: Duplicate Pok&#233;mon not allowed
           </Alert>
@@ -52,7 +53,10 @@ const SnackBar: React.FC<Props> = ({ snackOpen, setSnackOpen, variant }) => {
 
   return (
     <div>
-      <Snackbar open={snackOpen} autoHideDuration={4000} onClose={handleClose}>
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={4000} /*onClose={handleClose}*/
+      >
         {generateVariant()}
       </Snackbar>
     </div>

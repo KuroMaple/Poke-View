@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
 import { createContext } from 'react';
 
@@ -8,4 +9,10 @@ interface Props {
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const DarkModeContext = createContext<Props>();
+// Default value cuz anopiler being annoying
+const defaultProps: Props = {
+  isDarkMode: false,
+  setDarkMode: () => {},
+};
+
+export const DarkModeContext = createContext<Props>(defaultProps);

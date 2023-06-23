@@ -1,5 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Select, { MultiValue, SingleValue, StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
 import { ColourOption, colourOptionsDark, colourOptionsLight } from '../data';
@@ -105,7 +106,7 @@ const Dropdown = () => {
   const providedValue = useContext(TypeContext); // Contains the current type chosen to be filtered by
 
   // Dark mode context
-  const { isDarkMode, setDarkMode } = useContext(DarkModeContext);
+  const { isDarkMode } = useContext(DarkModeContext);
   // maps the filter type to a Colour option
   const typeToColour = (type: PokemonType) => {
     switch (type) {
