@@ -15,6 +15,7 @@ body{
   --card-checkered-dark: #b9eeb3;
   --search-box: white;
   --placeholder-color: gray;
+  --header-background: #fdfdc4;
   /* Normal */
   --type-normal: #A8A878;
   /* Fire */
@@ -67,7 +68,7 @@ body.darkMode{
   --search-list: #2ea043;
   --box-shadow: #00000;
   --placeholder-color: #e8e0e0;
-
+  --header-background: #a8a879;
   
 }
 
@@ -285,7 +286,7 @@ body.darkMode{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fdfdc4;
+    background-color: var(--header-background);
     height: 3rem;
     margin-bottom: 1rem;
     margin-top: 1rem;
@@ -504,6 +505,17 @@ body.darkMode{
   .focused-view__header {
     display: flex;
     justify-content: space-between;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--header-background);
+    height: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 15px;
   } 
 
   .focused-view__header-name{
