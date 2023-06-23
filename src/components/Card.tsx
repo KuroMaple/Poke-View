@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Pokemon } from '../data';
 import FrontCard from './FrontCard';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Modal from './Modal/Modal';
 
 interface Props {
@@ -15,9 +15,6 @@ const Card: React.FC<Props> = ({ pkmn }) => {
   const [isFlipped, setIsFlipped] = useState(true);
 
   const [modal, setModal] = useState(false);
-
-  // modal info and setter
-  //const { modalOpen, setModalOpen } = useContext(PokemonContext);
 
   const closeModal = () => setModal(false);
   const openModal = () => setModal(true);
@@ -42,9 +39,21 @@ const Card: React.FC<Props> = ({ pkmn }) => {
 
   return (
     <>
-      {modal && pkmn && (
-        <Modal modalOpen={modal} handleClose={closeModal} pkmn={pkmn} />
-      )}
+      <AnimatePresence
+        // Disable any initial animations on children that
+        // are present when the component is first rendered
+        initial={false}
+        // Only render one component at a time.
+        // The exiting component will finish its exit
+        // animation before entering component is rendered
+        mode="wait"
+        // Fires when all exiting nodes have completed animating out
+        onExitComplete={() => null}
+      >
+        {modal && pkmn && (
+          <Modal modalOpen={modal} handleClose={closeModal} pkmn={pkmn} />
+        )}
+      </AnimatePresence>
       <motion.div
         initial="initial"
         animate="animate"
@@ -52,8 +61,6 @@ const Card: React.FC<Props> = ({ pkmn }) => {
         onClick={(e) => {
           e.stopPropagation();
           modal ? closeModal() : openModal();
-          console.log('on click in card component');
-          console.log(pkmn);
         }}
       >
         {isFlipped ? (

@@ -527,3 +527,8 @@ body.darkMode{
   .focused-view__flavor-text {
     color: var(--text-color);
   }
+
+  .radar-chart{
+    height: 25rem;
+    width: 100%;
+  }

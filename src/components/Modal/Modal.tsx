@@ -44,8 +44,6 @@ const Modal: React.FC<Props> = ({ handleClose, pkmn }) => {
       <motion.div
         onClick={(e) => {
           e.stopPropagation();
-          console.log('pokemon in modal:');
-          console.log(pkmn);
         }}
         className="modal orange-gradient"
         variants={flip}

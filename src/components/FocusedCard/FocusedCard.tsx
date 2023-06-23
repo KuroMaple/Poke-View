@@ -3,6 +3,7 @@ import { Pokemon, pkmnMaxstats } from '../../data';
 import Types from '../Types';
 import { DarkModeContext } from '../../context/DarkModeContext';
 import CardStat from '../CardStat';
+import RadarChart from '../RadarChart/RadarChart';
 
 interface Props {
   pkmn: Pokemon;
@@ -202,6 +203,7 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
       <div className="focused-view__flavor-text">
         <p>{processText(pkmn.flavorText ?? '')}</p>
       </div>
+      <RadarChart pkmn={pkmn} />
     </div>
   );
 };
