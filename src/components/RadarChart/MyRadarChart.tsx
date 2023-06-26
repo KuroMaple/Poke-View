@@ -1,55 +1,44 @@
 import React, { PureComponent } from 'react';
 import { Pokemon, pkmnMaxstats } from '../../data';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+} from 'recharts';
 
 interface Props {
   pkmn: Pokemon;
 }
 
 const MyRadarChart: React.FC<Props> = ({ pkmn }) => {
-  // const data = {
-  //   labels: ['HP', 'ATK', 'DEF', 'SPEED', 'SPATK', 'SPDEF'],
-  //   datasets: [
-  //     {
-  //       label: '# of Votes',
-  //       data: [pkmn.hp, pkmn.atk, pkmn.def, pkmn.speed, pkmn.spAtk, pkmn.spDef],
-  //       backgroundColor: '#26F7FD3F',
-  //       borderColor: 'rgb(255, 255, 255)',
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // };
+
 
   const data = [
     {
       subject: 'HP',
       A: pkmn.hp,
-      fullMark: pkmnMaxstats.hp,
     },
     {
       subject: 'ATK',
       A: pkmn.atk,
-      fullMark: pkmnMaxstats.atk,
     },
     {
       subject: 'DEF',
       A: pkmn.def,
-      fullMark: pkmnMaxstats.def,
     },
     {
       subject: 'SPEED',
       A: pkmn.speed,
-      fullMark: pkmnMaxstats.speed,
     },
     {
       subject: 'SPATK',
       A: pkmn.spAtk,
-      fullMark: pkmnMaxstats.spAtk,
     },
     {
       subject: 'SPDEF',
       A: pkmn.spDef,
-      fullMark: pkmnMaxstats.spDef,
     },
   ];
 
@@ -58,7 +47,7 @@ const MyRadarChart: React.FC<Props> = ({ pkmn }) => {
   return (
     <RadarChart outerRadius={127} width={500} height={500} data={data}>
       <PolarGrid />
-      <PolarAngleAxis dataKey="subject" />
+      <PolarAngleAxis dataKey="subject" domain={[0, 255]} />
       <Radar
         name="Pokeomon Stats"
         dataKey="A"
