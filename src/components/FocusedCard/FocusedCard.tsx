@@ -3,7 +3,7 @@ import { Pokemon, pkmnMaxstats } from '../../data';
 import Types from '../Types';
 import { DarkModeContext } from '../../context/DarkModeContext';
 import CardStat from '../CardStat';
-import RadarChart from '../RadarChart/RadarChart';
+import MyRadarChart from '../RadarChart/MyRadarChart';
 
 interface Props {
   pkmn: Pokemon;
@@ -161,7 +161,7 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
           </div>
         </div>
         <div className="radar-chart__container">
-          <RadarChart pkmn={pkmn} />
+          <MyRadarChart pkmn={pkmn} />
         </div>
       </div>
 

@@ -540,19 +540,19 @@ body.darkMode{
     color: var(--text-color);
   }
 
-  /* .radar-chart{
+ /* .radar-chart{
     height: 100%;
     width: 100%;
-  }
+  } 
   .radar-chart__container {
     max-height: 30%;
     max-width: 30%;
-  } */
+  }  */
   .focused-view__main-info{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
     max-height: 40%;
+    justify-items: center;
   }
 
   .focused-view__img {
@@ -595,7 +595,7 @@ body.darkMode{
   }
   
   /*1200 px is for laptop*/
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 1000px) {
     .radar-chart__container {
       display: none;
     }

@@ -3,7 +3,7 @@ import CardDisplay from './components/CardDisplay';
 import FilterBox from './components/FilterBox';
 import MainHeader from './components/MainHeader';
 import React, { useState } from 'react';
-import { Pokemon, maxPokemonCount } from './data';
+import { Pokemon, maxPokemonCount, pkmnMaxstats } from './data';
 import { PokemonType, TypeContext } from './context/typeContext';
 import {
   PokemonContext,
@@ -11,6 +11,7 @@ import {
   randomPokemon500,
 } from './context/PokemonContext';
 import { DarkModeContext } from './context/DarkModeContext';
+import MyRadarChart from './components/RadarChart/MyRadarChart';
 
 function App() {
   // Corresponds to the current filterbox type filters
