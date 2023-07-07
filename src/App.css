@@ -1,6 +1,6 @@
-@import url('https://db.onlinewebfonts.com/c/f4d1593471d222ddebd973210265762a?family=Pokemon');
+/* @import url('https://db.onlinewebfonts.com/c/f4d1593471d222ddebd973210265762a?family=Pokemon'); */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=VT323&display=swap');
-
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
 
 body{
   --header-main: #ffcb05;
@@ -89,7 +89,7 @@ body.darkMode{
 }
 
 .main-header__title {
-    font-family: 'Pokemon', sans-serif;
+    font-family: 'Pokemon Solid', sans-serif;
     font-weight:lighter;
     color: var(--header-main);
     text-shadow:
