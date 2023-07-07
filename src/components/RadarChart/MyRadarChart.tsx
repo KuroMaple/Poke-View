@@ -1,20 +1,12 @@
-import React, { PureComponent } from 'react';
-import { Pokemon, pkmnMaxstats } from '../../data';
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-} from 'recharts';
+import React from 'react';
+import { Pokemon } from '../../data';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
 
 interface Props {
   pkmn: Pokemon;
 }
 
 const MyRadarChart: React.FC<Props> = ({ pkmn }) => {
-
-
   const data = [
     {
       subject: 'HP',

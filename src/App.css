@@ -121,13 +121,6 @@ body.darkMode{
 
 /* Styling React Select components according to their docs */
 
-.react-select-container{
-  
-}
-
-.react-select__control{
-  
-}
 .react-select__value-container{
   background-color: var(--search-box);
 }
@@ -135,9 +128,6 @@ body.darkMode{
   background-color: var(--search-box);
 }
 
-.react-select__menu{
-  
-}
 
 .react-select__menu-list{
   background-color: var(--search-list);
@@ -595,7 +585,7 @@ body.darkMode{
   }
   
   /*1200 px is for laptop*/
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1200px) {
     .radar-chart__container {
       display: none;
     }
