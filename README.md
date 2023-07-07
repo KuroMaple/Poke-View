@@ -1,2 +1,2 @@
 # Poke-View
-Build a Card displaying app using RTK query and API calls, Test cases and React features like router etc. 
+Pokemon card displaying app that shows up to 649 pokemon, their stats and custom animations. Built with a DS-game design in mind
