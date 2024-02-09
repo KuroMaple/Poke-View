@@ -7,12 +7,11 @@ import Modal from './Modal/Modal';
 
 interface Props {
   pkmn: Pokemon;
-  modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   //onClick: (pkmn: any) => void;
 }
 
-const Card: React.FC<Props> = ({ pkmn, modalOpen, setModalOpen }) => {
+const Card: React.FC<Props> = ({ pkmn, setModalOpen }) => {
   // Determines cards Flip status
   const [isFlipped, setIsFlipped] = useState(true);
 

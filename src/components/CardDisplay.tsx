@@ -58,7 +58,6 @@ const CardDisplay = () => {
             <Card
               key={curPkmn.id}
               pkmn={curPkmn}
-              modalOpen={pokemonProvided.modalOpen}
               setModalOpen={pokemonProvided.setModalOpen}
             />
           ))}
