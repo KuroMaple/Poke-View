@@ -7,17 +7,19 @@ import Modal from './Modal/Modal';
 
 interface Props {
   pkmn: Pokemon;
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   //onClick: (pkmn: any) => void;
 }
 
-const Card: React.FC<Props> = ({ pkmn }) => {
+const Card: React.FC<Props> = ({ pkmn, modalOpen, setModalOpen }) => {
   // Determines cards Flip status
   const [isFlipped, setIsFlipped] = useState(true);
 
-  const [modal, setModal] = useState(false);
+  //const [modal, setModal] = useState(false);
 
-  const closeModal = () => setModal(false);
-  const openModal = () => setModal(true);
+  const closeModal = () => setModalOpen(false);
+  const openModal = () => setModalOpen(true);
 
   const flipper = () => {
     setIsFlipped(false);
@@ -50,17 +52,18 @@ const Card: React.FC<Props> = ({ pkmn }) => {
         // Fires when all exiting nodes have completed animating out
         onExitComplete={() => null}
       >
-        {modal && pkmn && (
-          <Modal modalOpen={modal} handleClose={closeModal} pkmn={pkmn} />
+        {modalOpen && pkmn && (
+          <Modal modalOpen={modalOpen} handleClose={closeModal} pkmn={pkmn} />
         )}
       </AnimatePresence>
       <motion.div
+        id="whole-card"
         initial="initial"
         animate="animate"
         exit="exit"
         onClick={(e) => {
           e.stopPropagation();
-          modal ? closeModal() : openModal();
+          modalOpen ? closeModal() : openModal();
         }}
       >
         {isFlipped ? (

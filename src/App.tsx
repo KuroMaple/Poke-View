@@ -11,8 +11,60 @@ import {
   randomPokemon500,
 } from './context/PokemonContext';
 import { DarkModeContext } from './context/DarkModeContext';
+import { Steps } from 'intro.js-react';
+import 'intro.js/introjs.css';
 
 function App() {
+  // Intro.js steps
+  const [stepsEnabled, setStepsEnabled] = useState(true);
+  const [stepsOneCardEnabled, setStepsOneCardEnabled] = useState(true);
+  const [stepsTwoCardEnabled, setStepsTwoCardEnabled] = useState(true);
+  const [initialStep, setInitialStep] = useState(0);
+  const steps = [
+    {
+      element: 'doesnotexist',
+      intro:
+        'Welcome to PokéView! This is a quick guide to help you get started.',
+      position: 'right',
+    },
+    {
+      element: 'doesnotexist',
+      intro:
+        'PokéView allows you to learn about different Pokémon in the form of collectible cards.',
+    },
+    {
+      element: '.card-display__button',
+      intro:
+        'You can add a random Pokémon to your collection by clicking the "Load More Pokémon" button.',
+    },
+  ];
+
+  const stepsOneCard = [
+    {
+      element: '#whole-card',
+      intro: 'A wild Pokémon card appears! Click on the card to learn more.',
+      position: 'right',
+    },
+  ];
+
+  const stepsTwoCard = [
+    {
+      element: '.filter-box__dropdown',
+      intro: 'Filter Pokémon by type using the type dropdown.',
+    },
+    {
+      element: '.filter-box__input-box__input',
+      intro: 'Search for Pokémon by name using the search bar.',
+    },
+    {
+      element: '.main-header__button',
+      intro: 'Toggle dark mode by clicking here for a shiny surprise.',
+    },
+    {
+      element: '.card-display__card-holderr',
+      intro: 'Thats it! Enjoy your Pokémon journey!',
+    },
+  ];
   // Corresponds to the current filterbox type filters
   const [type, setType] = useState<PokemonType>('all');
 
@@ -118,8 +170,42 @@ function App() {
     setModalOpen,
   };
 
+  const onExit = () => {
+    setStepsEnabled(false);
+  };
+
+  const onExitOneCard = () => {
+    setStepsOneCardEnabled(false);
+  };
+
+  const onExitTwoCard = () => {
+    setStepsTwoCardEnabled(false);
+  };
+
   return (
     <>
+      <Steps
+        enabled={stepsEnabled || true}
+        steps={steps}
+        initialStep={initialStep}
+        onExit={() => onExit()}
+      />
+      {pokemonCards.length === 1 && !modalOpen ? (
+        <Steps
+          enabled={stepsOneCardEnabled || true}
+          steps={stepsOneCard}
+          initialStep={0}
+          onExit={() => onExitOneCard()}
+        />
+      ) : null}
+      {pokemonCards.length === 2 ? (
+        <Steps
+          enabled={stepsTwoCardEnabled || true}
+          steps={stepsTwoCard}
+          initialStep={0}
+          onExit={() => onExitTwoCard()}
+        />
+      ) : null}
       <TypeContext.Provider value={providerValue}>
         <DarkModeContext.Provider value={darkModeProvider}>
           <MainHeader />

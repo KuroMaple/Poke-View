@@ -55,7 +55,12 @@ const CardDisplay = () => {
             typeDisplay(curPkmn.typePrimary, curPkmn.typeSecondary)
           )
           .map((curPkmn) => (
-            <Card key={curPkmn.id} pkmn={curPkmn} />
+            <Card
+              key={curPkmn.id}
+              pkmn={curPkmn}
+              modalOpen={pokemonProvided.modalOpen}
+              setModalOpen={pokemonProvided.setModalOpen}
+            />
           ))}
       </motion.div>
     </div>
