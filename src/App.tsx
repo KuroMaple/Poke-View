@@ -2,7 +2,7 @@ import './App.css';
 import CardDisplay from './components/CardDisplay';
 import FilterBox from './components/FilterBox';
 import MainHeader from './components/MainHeader';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pokemon, maxPokemonCount } from './data';
 import { PokemonType, TypeContext } from './context/typeContext';
 import {
@@ -19,6 +19,7 @@ function App() {
   const [stepsEnabled, setStepsEnabled] = useState(true);
   const [stepsOneCardEnabled, setStepsOneCardEnabled] = useState(true);
   const [stepsTwoCardEnabled, setStepsTwoCardEnabled] = useState(true);
+  const [secondLoad, setSecondLoad] = useState(false);
   const steps = [
     {
       element: 'doesnotexist',
@@ -27,7 +28,7 @@ function App() {
       position: 'right',
     },
     {
-      element: 'doesnotexist',
+      element: '.main-header__title',
       intro:
         'PokéView allows you to learn about different Pokémon in the form of collectible cards.',
     },
@@ -43,6 +44,14 @@ function App() {
       element: '#whole-card',
       intro: 'A wild Pokémon card appears! Click on the card to learn more.',
       position: 'right',
+    },
+  ];
+
+  const stepsSecondLoad = [
+    {
+      element: '.card-display__button',
+      intro:
+        'Nice! Now try loading another Pokémon by clicking the "Load More Pokémon" button.',
     },
   ];
 
@@ -62,9 +71,16 @@ function App() {
     {
       element: '.card-display__card-holder',
       intro: 'Thats it! Enjoy your Pokémon journey!',
-      position: 'center',
+      position: 'auto',
     },
   ];
+
+  useEffect(() => {
+    if (!stepsOneCardEnabled) {
+      setSecondLoad(true);
+    }
+  }, [stepsOneCardEnabled]);
+
   // Corresponds to the current filterbox type filters
   const [type, setType] = useState<PokemonType>('all');
 
@@ -182,6 +198,10 @@ function App() {
     setStepsTwoCardEnabled(false);
   };
 
+  const onExitSecondLoad = () => {
+    setSecondLoad(false);
+  };
+
   return (
     <>
       <Steps
@@ -196,6 +216,14 @@ function App() {
           steps={stepsOneCard}
           initialStep={0}
           onExit={() => onExitOneCard()}
+        />
+      ) : null}
+      {secondLoad && !modalOpen ? (
+        <Steps
+          enabled={secondLoad}
+          steps={stepsSecondLoad}
+          initialStep={0}
+          onExit={() => onExitSecondLoad()}
         />
       ) : null}
       {pokemonCards.length === 2 && !modalOpen ? (
