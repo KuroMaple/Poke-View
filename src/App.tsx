@@ -19,7 +19,6 @@ function App() {
   const [stepsEnabled, setStepsEnabled] = useState(true);
   const [stepsOneCardEnabled, setStepsOneCardEnabled] = useState(true);
   const [stepsTwoCardEnabled, setStepsTwoCardEnabled] = useState(true);
-  const [initialStep, setInitialStep] = useState(0);
   const steps = [
     {
       element: 'doesnotexist',
