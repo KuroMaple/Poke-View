@@ -186,7 +186,7 @@ function App() {
       <Steps
         enabled={stepsEnabled || true}
         steps={steps}
-        initialStep={initialStep}
+        initialStep={0}
         onExit={() => onExit()}
       />
       {pokemonCards.length === 1 && !modalOpen ? (
