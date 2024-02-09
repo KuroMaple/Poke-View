@@ -184,14 +184,14 @@ function App() {
   return (
     <>
       <Steps
-        enabled={stepsEnabled || true}
+        enabled={stepsEnabled}
         steps={steps}
         initialStep={0}
         onExit={() => onExit()}
       />
       {pokemonCards.length === 1 && !modalOpen ? (
         <Steps
-          enabled={stepsOneCardEnabled || true}
+          enabled={stepsOneCardEnabled}
           steps={stepsOneCard}
           initialStep={0}
           onExit={() => onExitOneCard()}
@@ -199,7 +199,7 @@ function App() {
       ) : null}
       {pokemonCards.length === 2 ? (
         <Steps
-          enabled={stepsTwoCardEnabled || true}
+          enabled={stepsTwoCardEnabled}
           steps={stepsTwoCard}
           initialStep={0}
           onExit={() => onExitTwoCard()}
