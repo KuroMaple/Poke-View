@@ -60,8 +60,9 @@ function App() {
       intro: 'Toggle dark mode by clicking here for a shiny surprise.',
     },
     {
-      element: '.card-display__card-holderr',
+      element: '.card-display__card-holder',
       intro: 'Thats it! Enjoy your Pokémon journey!',
+      position: 'center',
     },
   ];
   // Corresponds to the current filterbox type filters
@@ -197,7 +198,7 @@ function App() {
           onExit={() => onExitOneCard()}
         />
       ) : null}
-      {pokemonCards.length === 2 ? (
+      {pokemonCards.length === 2 && !modalOpen ? (
         <Steps
           enabled={stepsTwoCardEnabled}
           steps={stepsTwoCard}

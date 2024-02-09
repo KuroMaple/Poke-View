@@ -242,9 +242,11 @@ body.darkMode{
 
 .card, .card__back {
     border:1px solid black;
-    height: 27rem;
+    height: fit-content;
+    min-height: 25rem;
     width: 15rem;
-    margin: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     display: inline-flexbox;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -268,7 +270,7 @@ body.darkMode{
   background-color: var(--header-accent);
   background-image: url('./assets/backPkmnCard.jpg');
   background-repeat: no-repeat;
-  background-size: 100% 27rem;
+  background-size: 100% 25rem;
 
 }
 
