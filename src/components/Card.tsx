@@ -16,10 +16,16 @@ const Card: React.FC<Props> = ({ pkmn, modalOpen, setModalOpen }) => {
   // Determines cards Flip status
   const [isFlipped, setIsFlipped] = useState(true);
 
-  //const [modal, setModal] = useState(false);
+  const [localModalOpen, setLocalModalOpen] = useState(false);
 
-  const closeModal = () => setModalOpen(false);
-  const openModal = () => setModalOpen(true);
+  const closeModal = () => {
+    setModalOpen(false);
+    setLocalModalOpen(false);
+  };
+  const openModal = () => {
+    setModalOpen(true);
+    setLocalModalOpen(true);
+  };
 
   const flipper = () => {
     setIsFlipped(false);
@@ -52,8 +58,12 @@ const Card: React.FC<Props> = ({ pkmn, modalOpen, setModalOpen }) => {
         // Fires when all exiting nodes have completed animating out
         onExitComplete={() => null}
       >
-        {modalOpen && pkmn && (
-          <Modal modalOpen={modalOpen} handleClose={closeModal} pkmn={pkmn} />
+        {localModalOpen && pkmn && (
+          <Modal
+            modalOpen={localModalOpen}
+            handleClose={closeModal}
+            pkmn={pkmn}
+          />
         )}
       </AnimatePresence>
       <motion.div
@@ -63,7 +73,7 @@ const Card: React.FC<Props> = ({ pkmn, modalOpen, setModalOpen }) => {
         exit="exit"
         onClick={(e) => {
           e.stopPropagation();
-          modalOpen ? closeModal() : openModal();
+          localModalOpen ? closeModal() : openModal();
         }}
       >
         {isFlipped ? (
