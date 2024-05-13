@@ -1,9 +1,11 @@
+import './FocusedCard.css';
 import React, { useContext, useEffect, useState } from 'react';
 import { Pokemon, pkmnMaxstats } from '../../data';
 import Types from '../Types';
 import { DarkModeContext } from '../../context/DarkModeContext';
 import CardStat from '../CardStat';
 import MyRadarChart from '../RadarChart/MyRadarChart';
+import FocusedStats from './FocusedStat/FocusedStats';
 
 interface Props {
   pkmn: Pokemon;
@@ -164,52 +166,14 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
           <MyRadarChart pkmn={pkmn} />
         </div>
       </div>
-
-      <div className="focused-view__stats">
-        <div className="focused-view__stats-single">
-          <CardStat
-            statName="hp"
-            statValue={pkmn?.hp}
-            maxStat={pkmnMaxstats.hp}
-          />
-        </div>
-
-        <div className="focused-view__stats-single">
-          <CardStat
-            statName="atk"
-            statValue={pkmn?.atk}
-            maxStat={pkmnMaxstats.atk}
-          />
-        </div>
-        <div className="focused-view__stats-single">
-          <CardStat
-            statName="def"
-            statValue={pkmn?.def}
-            maxStat={pkmnMaxstats.def}
-          />
-        </div>
-        <div className="focused-view__stats-single">
-          <CardStat
-            statName="spatk"
-            statValue={pkmn?.spAtk ?? 0}
-            maxStat={pkmnMaxstats.spAtk ?? 0}
-          />
-        </div>
-        <div className="focused-view__stats-single">
-          <CardStat
-            statName="spdef"
-            statValue={pkmn?.spDef ?? 0}
-            maxStat={pkmnMaxstats.spDef ?? 0}
-          />
-        </div>
-        <div className="focused-view__stats-single">
-          <CardStat
-            statName="speed"
-            statValue={pkmn?.speed ?? 0}
-            maxStat={pkmnMaxstats.speed ?? 0}
-          />
-        </div>
-      </div>
+      <FocusedStats
+        hp={pkmn.hp}
+        atk={pkmn.atk}
+        def={pkmn.def}
+        spatk={pkmn.spAtk ?? 0}
+        spdef={pkmn.spDef ?? 0}
+        speed={pkmn.speed ?? 0}
+      />
       <div className="focused-view__flavor-text">
         <p>{processText(pkmn.flavorText ?? '')}</p>
       </div>

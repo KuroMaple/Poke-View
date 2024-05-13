@@ -44,7 +44,7 @@ const CardStat: React.FC<Props> = ({ statName, statValue, maxStat }) => {
   };
   return (
     <div className="card__stats-single">
-      <p>{statName}: &nbsp;</p>
+      <p>{statName.toLocaleUpperCase()}: &nbsp;</p>
       <span>{statValue}&nbsp;</span>
       <BorderLinearProgress
         variant="determinate"

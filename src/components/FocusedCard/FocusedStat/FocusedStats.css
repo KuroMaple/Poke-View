@@ -1,0 +1,15 @@
+.focused-stats_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 18fr;
+  align-items: first baseline;
+  grid-template-rows: repeat(6, 30px);
+  height: auto;
+}
+
+.stat-label, .stat-value {
+  font-size: x-large;
+}
+.stat-value {
+  padding-left: 30px;
+  padding-right: 30px;
+}
