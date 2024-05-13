@@ -32,6 +32,7 @@ const FocusedStats: React.FC<Props> = ({
     height: 10,
     minWidth: 0,
     borderRadius: 5,
+    justifySelf: 'last-baseline',
     [`&.${linearProgressClasses.colorPrimary}`]: {
       backgroundColor: theme.palette.grey[100],
     },

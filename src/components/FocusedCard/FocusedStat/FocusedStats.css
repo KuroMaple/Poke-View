@@ -4,12 +4,19 @@
   align-items: first baseline;
   grid-template-rows: repeat(6, 30px);
   height: auto;
+  align-self: center;
+  justify-items: center;
 }
 
 .stat-label, .stat-value {
   font-size: x-large;
+  color: var(--text-color);
+}
+
+.stat-label {
+  justify-self: flex-start;
 }
 .stat-value {
   padding-left: 30px;
-  padding-right: 30px;
+  justify-self: flex-end;
 }
