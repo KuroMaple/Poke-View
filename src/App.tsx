@@ -16,10 +16,10 @@ import 'intro.js/introjs.css';
 
 function App() {
   // Intro.js steps
-  const [stepsEnabled, setStepsEnabled] = useState(false);
-  const [stepsOneCardEnabled, setStepsOneCardEnabled] = useState(false);
-  const [stepsTwoCardEnabled, setStepsTwoCardEnabled] = useState(false);
-  const [secondLoad, setSecondLoad] = useState(false);
+  const [stepsEnabled, setStepsEnabled] = useState(true);
+  const [stepsOneCardEnabled, setStepsOneCardEnabled] = useState(true);
+  const [stepsTwoCardEnabled, setStepsTwoCardEnabled] = useState(true);
+  const [secondLoad, setSecondLoad] = useState(true);
   const steps = [
     {
       element: 'doesnotexist',

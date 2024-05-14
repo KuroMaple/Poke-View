@@ -1,9 +1,8 @@
 import './FocusedCard.css';
 import React, { useContext, useEffect, useState } from 'react';
-import { Pokemon, pkmnMaxstats } from '../../data';
+import { Pokemon } from '../../data';
 import Types from '../Types';
 import { DarkModeContext } from '../../context/DarkModeContext';
-import CardStat from '../CardStat';
 import MyRadarChart from '../RadarChart/MyRadarChart';
 import FocusedStats from './FocusedStat/FocusedStats';
 
