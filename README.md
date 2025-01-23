@@ -22,14 +22,14 @@ PokeView is a **web application** that allows users to explore detailed informat
 
 ## 🎥 Demo  
 
-### 🐾 Searching for Pokémon  
+### 🔍 Searching for Pokémon  
 ![GIF Demo](https://i.imgur.com/SWrhtHc.gif)
 
 
-### 🐾 Custom Dark Mode 
+### 🌙 Custom Dark Mode 
 ![GIF Demo](https://i.imgur.com/GEiRVuh.gif)
 
-### 🐾 Animations
-![GIF Demo](https://i.imgur.com/tXWohn4.gif)
+### ✨ Animations
+![GIF Demo](https://i.imgur.com/IrcDpsL.gif)
 
 ---
