@@ -4,19 +4,15 @@ PokeView is a **web application** that allows users to explore detailed informat
 
 ---
 
+## Technologies Used
+![React](https://img.shields.io/badge/React-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=61DAFB)![HTML5](https://img.shields.io/badge/HTML5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white)![CSS3](https://img.shields.io/badge/CSS3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white)
+
 ## ✨ Features  
 
 - **Search and Explore**: Quickly look up any Pokémon by name   
 - **Comprehensive Details**: View species, abilities, stats, and more.  
 - **Dynamic UI**: Smooth, modern interface inspired by nostalgic DS designs.  
 - **Up-to-Date Information**: Powered by the official [Pokémon API](https://pokeapi.co) and additional reliable sources.  
-
----
-
-## 🚀 Tech Stack  
-
-- **Frontend**: React + TypeScript  
-- **Styling**: CSS with custom components  
 
 ---
 
