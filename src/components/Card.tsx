@@ -30,7 +30,12 @@ const Card: React.FC<Props> = ({ pkmn, setModalOpen }) => {
     setIsFlipped(false);
   };
 
-  // Timer to run flipping animation
+  // TODO(you) BUG #1: this line runs on EVERY render, scheduling a brand-new
+  // timer each time — it only "works" because flipping twice is harmless.
+  // Hint: side effects belong in useEffect with a cleanup function
+  // (clearTimeout). Then ask the deeper question: does a one-way
+  // "flip once after mount" need state + a timer at all, or could
+  // framer-motion's `transition={{ delay: 1.5 }}` express it declaratively?
   setTimeout(flipper, 1500);
 
   const FlipVariant = {

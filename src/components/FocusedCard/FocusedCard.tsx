@@ -14,6 +14,12 @@ const FocusedCard: React.FC<Props> = ({ pkmn }) => {
   // Dark Mode tracker
   const { isDarkMode } = useContext(DarkModeContext);
 
+  // TODO(you) BUG #2: two problems here. (a) The effect's dependency is the
+  // state it sets — it triggers itself. (b) Copying a prop into state is an
+  // anti-pattern: props are already reactive. Delete the state + effect and
+  // use `pkmn` directly (note `pokemon` isn't even referenced below — the
+  // JSX already reads `pkmn`). Same pattern exists in Modal.tsx.
+  // Research: react.dev "You Might Not Need an Effect".
   const [pokemon, setPokemon] = useState(pkmn);
 
   useEffect(() => {

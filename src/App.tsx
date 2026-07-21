@@ -141,7 +141,19 @@ function App() {
     setSnackOpen(true);
   };
 
-  // Generates a unique ID, makes the API calls and adds to the Pokemon Array
+  // TODO(you) BUG #4: two problems here.
+  // (a) The loop only checks the max-count exit inside a branch that requires
+  //     an unlucky duplicate roll first — restructure so "is the collection
+  //     full?" is checked ONCE, up front, before any rolling. (As the
+  //     collection grows this loop also burns CPU rolling duplicates;
+  //     consider picking from the set of IDs NOT yet collected instead.)
+  // (b) Race: isUnique reads pokemonCards from this render's closure. Click
+  //     twice fast and both clicks see the same stale array → duplicates.
+  //     Hint: do the final uniqueness check inside the setPokemonCards
+  //     updater function, where React guarantees fresh state.
+  // Bonus: isUnique uses .map() as a loop — .some() says what you mean.
+  // And generatePokemon(...).then(...) has no .catch — a failed fetch is a
+  // silent unhandled rejection; surface it via the existing snackbar.
   const handleAddRandomCard = () => {
     // eslint-disable-next-line no-constant-condition
     let numFound = false;

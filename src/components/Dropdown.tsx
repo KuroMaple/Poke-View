@@ -102,6 +102,18 @@ const colourStylesDark: StylesConfig<ColourOption> = {
   singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
 };
 
+// TODO(you) REFACTOR #5: ~350 of this file's 438 lines are three parallel
+// switch statements over the same 19 values (typeToColour, updateTypeLight,
+// updateTypeDark — the last two are near-identical copies). All of it
+// collapses into data:
+//   1. In data.tsx, note colourOptionsLight/Dark differ by TWO entries —
+//      derive dark from light instead of duplicating 19 rows.
+//   2. typeToColour(type) is just: options.findIndex(o => o.value === type).
+//   3. Both updateType* reduce to ONE function: given the selected option,
+//      call setType(option.value) and set the CSS var to
+//      `var(--type-${option.value})` (with 'all' → '--background').
+// Target: under 100 lines total. The lesson: when N switch cases differ only
+// in data, the switch IS a lookup table wanting to exist.
 const Dropdown = () => {
   const providedValue = useContext(TypeContext); // Contains the current type chosen to be filtered by
 

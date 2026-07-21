@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: pokeview
+      POSTGRES_PASSWORD: pokeview
+      POSTGRES_DB: pokeview
+    ports:
+      - "5433:5432" # 5433 to avoid clashing with any local Postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pokeview"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+volumes:
+  pgdata:

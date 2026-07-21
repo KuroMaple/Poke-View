@@ -10,6 +10,8 @@ interface Props {
   pkmn: Pokemon;
 }
 const Modal: React.FC<Props> = ({ handleClose, pkmn }) => {
+  // TODO(you) BUG #2 (same as FocusedCard): prop copied into state for no
+  // reason — delete the state + effect and pass `pkmn` straight through.
   const [pokemon, setPokemon] = useState(pkmn);
 
   useEffect(() => {
