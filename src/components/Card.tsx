@@ -57,7 +57,7 @@ const Card: React.FC<Props> = ({ pkmn, setModalOpen }) => {
           className="flip-card__inner"
           initial={{ rotateY: 180 }}
           animate={{ rotateY: 0 }}
-          transition={{ delay: 0.5, duration: 0.6, ease: 'easeInOut' }}
+          transition={{ delay: 0.25, duration: 0.5, ease: 'easeInOut' }}
         >
           <div className="flip-card__face flip-card__face--front">
             <FrontCard pokemon={pkmn} />
