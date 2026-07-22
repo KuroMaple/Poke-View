@@ -22,25 +22,11 @@ const FrontCard: React.FC<Props> = ({ pokemon }) => {
     return text;
   };
 
-  const FlipVariant = {
-    initial: {
-      rotateY: 90,
-      transition: { duration: 1 },
-    },
-    animate: {
-      rotateY: 0,
-      transition: { duration: 1 },
-    },
-  };
-
+  // The flip itself is now driven by the parent (Card.tsx) 3D rotation, so
+  // FrontCard no longer animates its own entrance rotation — it just provides
+  // the hover/tap feedback once the card is face-up.
   return (
-    <motion.div
-      variants={FlipVariant}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      initial="initial"
-      animate="animate"
-    >
+    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
       <div className="card">
         <div className="card__header">
           <div className="card__id">

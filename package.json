@@ -15,8 +15,6 @@
     "@mui/material": "^5.13.5",
     "chroma-js": "^2.4.2",
     "framer-motion": "^10.12.16",
-    "intro.js": "^7.2.0",
-    "intro.js-react": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",

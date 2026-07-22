@@ -240,6 +240,46 @@ body.darkMode{
   border-radius: 10px;
 }
 
+/* ---- 3D flip container (replaces the old timer-driven component swap) ---- */
+.flip-card {
+  margin: 0 1rem 1rem;
+  width: fit-content;
+  perspective: 1200px; /* smaller = more dramatic depth during the turn */
+  cursor: pointer;
+}
+
+.flip-card__inner {
+  position: relative;
+  width: fit-content;
+  transform-style: preserve-3d; /* lets children live in the parent's 3D space */
+}
+
+.flip-card__face {
+  width: fit-content;
+  backface-visibility: hidden; /* hide a face when it points away from us */
+  -webkit-backface-visibility: hidden;
+}
+
+/* The front face is in normal flow and therefore defines the card's height. */
+.flip-card__face--front {
+  position: relative;
+}
+
+/* The back face is pre-rotated and stacked on top of the front's box. */
+.flip-card__face--back {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  transform: rotateY(180deg);
+}
+
+/* Side margins now live on .flip-card, so faces sit flush inside it. */
+.flip-card .card,
+.flip-card .card__back {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .card, .card__back {
     border:1px solid black;
     height: fit-content;
