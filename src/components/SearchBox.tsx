@@ -7,9 +7,6 @@ interface Props {
   setResults: React.Dispatch<React.SetStateAction<PokemonNameObject[]>>;
 }
 
-// Pure filter: an empty query yields no results; otherwise a case-insensitive
-// substring match. Declared outside the component so it captures nothing and
-// is trivially testable in isolation.
 const filterNames = (query: string, names: PokemonNameObject[]) => {
   const q = query.trim().toLowerCase();
   if (!q) return [];
@@ -20,25 +17,19 @@ const SearchBox: React.FC<Props> = ({ setResults }) => {
   const [input, setInput] = useState('');
   const [pokemonNames, setPokemonNames] = useState<PokemonNameObject[]>([]);
 
-  // Fetch the full name list once on mount. It never changes, so every
-  // keystroke afterwards filters it in memory — no per-keystroke requests,
-  // and therefore no debounce and no request-ordering races to reason about.
+  // Fetch the full name list once; every keystroke then filters it in memory.
   useEffect(() => {
     const loadNames = async () => {
       try {
         setPokemonNames(await pokeAPI.getPokemonNames());
       } catch (error) {
-        // A failed load leaves search empty rather than crashing — but log it,
-        // so a broken API doesn't fail silently.
         console.error('Failed to load Pokémon names for search:', error);
       }
     };
     loadNames();
   }, []);
 
-  // Results are a pure derivation of (query, list). Recomputing here means the
-  // filter re-runs both when the user types AND when the list finishes loading,
-  // so a query entered before the fetch resolves isn't left showing nothing.
+  // Recompute results whenever the query or the loaded list changes.
   useEffect(() => {
     setResults(filterNames(input, pokemonNames));
   }, [input, pokemonNames, setResults]);

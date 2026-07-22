@@ -1,65 +1,43 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Snackbar, Alert } from '@mui/material';
 import React from 'react';
 
 interface Props {
   snackOpen: boolean;
-  setSnackOpen: React.Dispatch<React.SetStateAction<boolean>>; // TODO FIX after deployment
+  setSnackOpen: React.Dispatch<React.SetStateAction<boolean>>;
   variant: string;
 }
 
+// Error message per variant — add a case by adding a line here.
+const MESSAGES: Record<string, string> = {
+  MaxPkmn: 'ERROR: Max Pokémon Count Reached',
+  DplctePkmn: 'ERROR: Duplicate Pokémon not allowed',
+  FetchError: 'ERROR: Could not load Pokémon. Please try again.',
+};
+
 const SnackBar: React.FC<Props> = ({ snackOpen, setSnackOpen, variant }) => {
   const handleClose = (
-    event?: React.SyntheticEvent | Event,
+    _event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    console.log(event);
-
+    if (reason === 'clickaway') return;
     setSnackOpen(false);
   };
-  const generateVariant = () => {
-    switch (variant) {
-      case 'MaxPkmn':
-        return (
-          <Alert
-            onClose={handleClose}
-            severity="error"
-            sx={{ width: '100%' }}
-            variant="filled"
-          >
-            ERROR: Max Pok&#233;mon Count Reached
-          </Alert>
-        );
-        break;
-      case 'DplctePkmn':
-        return (
-          <Alert
-            onClose={handleClose}
-            sx={{ width: '100%' }}
-            variant="filled"
-            severity="error"
-          >
-            ERROR: Duplicate Pok&#233;mon not allowed
-          </Alert>
-        );
-        break;
-      default:
-        break;
-    }
-  };
+
+  const message = MESSAGES[variant];
 
   return (
-    <div>
-      <Snackbar
-        open={snackOpen}
-        autoHideDuration={4000} /*onClose={handleClose}*/
-      >
-        {generateVariant()}
-      </Snackbar>
-    </div>
+    <Snackbar open={snackOpen} autoHideDuration={4000} onClose={handleClose}>
+      {message ? (
+        <Alert
+          onClose={handleClose}
+          severity="error"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {message}
+        </Alert>
+      ) : undefined}
+    </Snackbar>
   );
 };
 

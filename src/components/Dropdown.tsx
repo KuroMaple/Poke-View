@@ -1,5 +1,4 @@
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext } from 'react';
 import Select, { MultiValue, SingleValue, StylesConfig } from 'react-select';
 import chroma from 'chroma-js';

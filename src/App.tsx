@@ -2,14 +2,10 @@ import './App.css';
 import CardDisplay from './components/CardDisplay';
 import FilterBox from './components/FilterBox';
 import MainHeader from './components/MainHeader';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Pokemon, maxPokemonCount } from './data';
 import { PokemonType, TypeContext } from './context/typeContext';
-import {
-  PokemonContext,
-  generatePokemon,
-  randomPokemon500,
-} from './context/PokemonContext';
+import { PokemonContext, generatePokemon } from './context/PokemonContext';
 import { DarkModeContext } from './context/DarkModeContext';
 
 function App() {
@@ -21,10 +17,21 @@ function App() {
     type,
     setType,
   };
-
-  // State that holds all the pokemon Data information
+  // All collected Pokémon cards
   const [pokemonCards, setPokemonCards] = useState<Pokemon[]>([]);
-  // Corresponds to the Error snack bar
+
+  // Dex IDs not yet collected. A ref, not state: we mutate it synchronously at
+  // click time to reserve an ID before its async fetch resolves, which is what
+  // stops two fast clicks from picking the same one.
+  const availableIdsRef = useRef<Set<number>>();
+  if (!availableIdsRef.current) {
+    availableIdsRef.current = new Set(
+      Array.from({ length: maxPokemonCount }, (_, i) => i + 1)
+    );
+  }
+  const availableIds = availableIdsRef.current;
+
+  // Error snackbar state
   const [snackOpen, setSnackOpen] = useState(false);
   // Snackbar variant
   const [variant, setVariant] = useState('');
@@ -41,25 +48,9 @@ function App() {
     setDarkMode,
   };
 
-  // Checks the unqiuness of the passed id, based on if its a name or number
-  const isUnique = (id: number | string): boolean => {
-    let unique = true;
-    if (typeof id === 'number') {
-      pokemonCards.map((curPkmn) => {
-        if (curPkmn.id === id) {
-          unique = false;
-        }
-      });
-    } else {
-      pokemonCards.map((curPkmn) => {
-        if (curPkmn.name === id) {
-          unique = false;
-        }
-      });
-    }
-
-    return unique;
-  };
+  // True if no already-collected card shares this name.
+  const isNameUnique = (name: string): boolean =>
+    !pokemonCards.some((curPkmn) => curPkmn.name === name);
 
   // Snackbar Max pokemon reached error
   const handleMaxPkmnReached = () => {
@@ -73,44 +64,47 @@ function App() {
     setSnackOpen(true);
   };
 
-  // TODO(you) BUG #4: two problems here.
-  // (a) The loop only checks the max-count exit inside a branch that requires
-  //     an unlucky duplicate roll first — restructure so "is the collection
-  //     full?" is checked ONCE, up front, before any rolling. (As the
-  //     collection grows this loop also burns CPU rolling duplicates;
-  //     consider picking from the set of IDs NOT yet collected instead.)
-  // (b) Race: isUnique reads pokemonCards from this render's closure. Click
-  //     twice fast and both clicks see the same stale array → duplicates.
-  //     Hint: do the final uniqueness check inside the setPokemonCards
-  //     updater function, where React guarantees fresh state.
-  // Bonus: isUnique uses .map() as a loop — .some() says what you mean.
-  // And generatePokemon(...).then(...) has no .catch — a failed fetch is a
-  // silent unhandled rejection; surface it via the existing snackbar.
-  const handleAddRandomCard = () => {
-    // eslint-disable-next-line no-constant-condition
-    let numFound = false;
-    let r = 0;
-    while (!numFound) {
-      r = randomPokemon500();
-      if (isUnique(r)) {
-        numFound = true;
-        generatePokemon(r).then((newPkmn) => {
-          setPokemonCards((oldArray) => [newPkmn, ...oldArray]);
-        });
-      } else if (pokemonCards.length === maxPokemonCount) {
-        handleMaxPkmnReached();
-        break;
-      }
-    }
+  // Snackbar fetch/network error (a generatePokemon call rejected)
+  const handleFetchError = () => {
+    setVariant('FetchError');
+    setSnackOpen(true);
   };
 
-  // Adds a pokemon by name only if it does not exist in array already
-  const handleAddCardByName = (name: string) => {
-    if (isUnique(name)) {
-      generatePokemon(name).then((newPkmn) => {
-        setPokemonCards((oldArray) => [newPkmn, ...oldArray]);
+  // Single commit point for both add paths: drop the ID from the pool and skip
+  // if it's somehow already collected.
+  const addPokemon = (newPkmn: Pokemon) => {
+    availableIds.delete(newPkmn.id);
+    setPokemonCards((oldArray) =>
+      oldArray.some((curPkmn) => curPkmn.id === newPkmn.id)
+        ? oldArray
+        : [newPkmn, ...oldArray]
+    );
+  };
+
+  // Pick a random ID from the remaining pool and reserve it before fetching.
+  const handleAddRandomCard = () => {
+    if (availableIds.size === 0) {
+      handleMaxPkmnReached();
+      return;
+    }
+    const ids = Array.from(availableIds);
+    const id = ids[Math.floor(Math.random() * ids.length)];
+    availableIds.delete(id); // reserve synchronously → no double-pick race
+    generatePokemon(id)
+      .then(addPokemon)
+      .catch(() => {
+        availableIds.add(id); // fetch failed — let this ID be rolled again
+        handleFetchError();
       });
-    } else if (pokemonCards.length === maxPokemonCount) {
+  };
+
+  // Adds a pokemon by name only if it is not already collected.
+  const handleAddCardByName = (name: string) => {
+    if (isNameUnique(name)) {
+      generatePokemon(name)
+        .then(addPokemon)
+        .catch(() => handleFetchError());
+    } else if (availableIds.size === 0) {
       handleMaxPkmnReached();
     } else {
       handleDplctePkmn();

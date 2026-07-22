@@ -23,11 +23,7 @@ const Card: React.FC<Props> = ({ pkmn, setModalOpen }) => {
 
   return (
     <>
-      <AnimatePresence
-        initial={false}
-        mode="wait"
-        onExitComplete={() => null}
-      >
+      <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
         {localModalOpen && pkmn && (
           <Modal
             modalOpen={localModalOpen}

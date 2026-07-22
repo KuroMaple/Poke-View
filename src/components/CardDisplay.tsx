@@ -1,19 +1,17 @@
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/jsx-key */
 import { useContext } from 'react';
 import Card from './Card';
 import { motion } from 'framer-motion';
 import { TypeContext } from '../context/typeContext';
 import SnackBar from './SnackBar';
 import { PokemonContext } from '../context/PokemonContext';
-// import React from 'react';
 
 const CardDisplay = () => {
   // Contains the selected type to filter by
   const providedValue = useContext(TypeContext);
 
   // Pokemon array and all operations on array
-  const pokemonProvided = useContext(PokemonContext);
+  const pokemonProvider = useContext(PokemonContext);
 
   // Evaluates whether currentPkmn type matches drop down selected type
   const typeDisplay = (
@@ -36,7 +34,13 @@ const CardDisplay = () => {
         <button
           className="card-display__button"
           onClick={() => {
-            pokemonProvided.handleAddRandomCard();
+            try {
+              pokemonProvider.handleAddRandomCard();
+            } catch (error) {
+              // A failed load leaves search empty rather than crashing — but log it,
+              // so a broken API doesn't fail silently.
+              console.error('Failed to add random Pokemon', error);
+            }
           }}
         >
           Load More Pok&#233;mon
@@ -44,13 +48,13 @@ const CardDisplay = () => {
       </div>
 
       <SnackBar
-        snackOpen={pokemonProvided.snackOpen}
-        setSnackOpen={pokemonProvided.setSnackOpen}
-        variant={pokemonProvided.variant}
+        snackOpen={pokemonProvider.snackOpen}
+        setSnackOpen={pokemonProvider.setSnackOpen}
+        variant={pokemonProvider.variant}
       />
 
       <motion.div className="card-display__card-holder">
-        {pokemonProvided.pokemonCards
+        {pokemonProvider.pokemonCards
           .filter((curPkmn) =>
             typeDisplay(curPkmn.typePrimary, curPkmn.typeSecondary)
           )
@@ -58,7 +62,7 @@ const CardDisplay = () => {
             <Card
               key={curPkmn.id}
               pkmn={curPkmn}
-              setModalOpen={pokemonProvided.setModalOpen}
+              setModalOpen={pokemonProvider.setModalOpen}
             />
           ))}
       </motion.div>

@@ -84,7 +84,7 @@ export const randomPokemon500 = () => {
   return Math.floor(Math.random() * maxPokemonCount) + 1;
 };
 
-// Default value cuz anopiler being annoying
+// Default to ease compiler
 const defaultProps: Props = {
   pokemonCards: [],
   setPokemonCards: () => {},
