@@ -1,5 +1,7 @@
 import './App.css';
-import GameRoot from './components/game/GameRoot';
+import CardDisplay from './components/CardDisplay';
+import FilterBox from './components/FilterBox';
+import MainHeader from './components/MainHeader';
 import React, { useState } from 'react';
 import { Pokemon, maxPokemonCount } from './data';
 import { PokemonType, TypeContext } from './context/typeContext';
@@ -128,13 +130,13 @@ function App() {
     setModalOpen,
   };
 
-  // Contexts stay at the root so the collection scene (and anything else)
-  // can consume them; GameRoot decides which scene renders.
   return (
     <TypeContext.Provider value={providerValue}>
       <DarkModeContext.Provider value={darkModeProvider}>
+        <MainHeader />
         <PokemonContext.Provider value={pkmnProvider}>
-          <GameRoot />
+          <FilterBox />
+          <CardDisplay />
         </PokemonContext.Provider>
       </DarkModeContext.Provider>
     </TypeContext.Provider>
