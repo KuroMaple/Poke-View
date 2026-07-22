@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import pokeAPI from '../poke-api';
 import { PokemonNameObject } from '../data';
@@ -7,37 +7,41 @@ interface Props {
   setResults: React.Dispatch<React.SetStateAction<PokemonNameObject[]>>;
 }
 
+// Pure filter: an empty query yields no results; otherwise a case-insensitive
+// substring match. Declared outside the component so it captures nothing and
+// is trivially testable in isolation.
+const filterNames = (query: string, names: PokemonNameObject[]) => {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  return names.filter((pkmn) => pkmn?.name?.toLowerCase().includes(q));
+};
+
 const SearchBox: React.FC<Props> = ({ setResults }) => {
   const [input, setInput] = useState('');
+  const [pokemonNames, setPokemonNames] = useState<PokemonNameObject[]>([]);
 
-  // TODO(you) BUG #3: three problems in this search path.
-  // (a) Every keystroke refetches the full 649-name list — but the list never
-  //     changes; fetch it once and reuse it (module-level promise, or state
-  //     in FilterBox).
-  // (b) No debounce: typing "pikachu" fires 7 requests. ~200ms debounce.
-  // (c) No cancellation/ordering: a slow response for "pika" can resolve
-  //     AFTER the response for "pikachu" and clobber it. Pass an
-  //     AbortController signal and abort the previous request on each change.
-  // Research: "AbortController fetch React", "debounce vs throttle".
-  const fetchData = async (value: string) => {
-    const api = pokeAPI;
-    const pkmnNames: PokemonNameObject[] = await api.getPokemonNames();
-    const results = pkmnNames.filter((curPkmn) => {
-      return (
-        value &&
-        curPkmn &&
-        curPkmn.name &&
-        curPkmn.name.toLowerCase().includes(value)
-      );
-    });
+  // Fetch the full name list once on mount. It never changes, so every
+  // keystroke afterwards filters it in memory — no per-keystroke requests,
+  // and therefore no debounce and no request-ordering races to reason about.
+  useEffect(() => {
+    const loadNames = async () => {
+      try {
+        setPokemonNames(await pokeAPI.getPokemonNames());
+      } catch (error) {
+        // A failed load leaves search empty rather than crashing — but log it,
+        // so a broken API doesn't fail silently.
+        console.error('Failed to load Pokémon names for search:', error);
+      }
+    };
+    loadNames();
+  }, []);
 
-    setResults(results);
-  };
-
-  const handleChange = (value: string) => {
-    setInput(value);
-    fetchData(value);
-  };
+  // Results are a pure derivation of (query, list). Recomputing here means the
+  // filter re-runs both when the user types AND when the list finishes loading,
+  // so a query entered before the fetch resolves isn't left showing nothing.
+  useEffect(() => {
+    setResults(filterNames(input, pokemonNames));
+  }, [input, pokemonNames, setResults]);
 
   return (
     <div className="filter-box__input-box">
@@ -46,7 +50,7 @@ const SearchBox: React.FC<Props> = ({ setResults }) => {
         placeholder="Search for a Pok&#233;mon..."
         className="filter-box__input-box__input"
         value={input}
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={(e) => setInput(e.target.value)}
       />
     </div>
   );
